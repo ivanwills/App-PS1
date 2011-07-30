@@ -3,10 +3,7 @@ Changes
 LICENSE
 MANIFEST
 MANIFEST.SKIP
-META.yml
-Makefile.PL
 README
-lib/PS1.pm
 t/00-load.t
 t/boilerplate.t
 t/critic.t
@@ -15,3 +12,14 @@ t/pod-coverage.t
 t/pod.t
 t/perlcriticrc
 t/spelling.t
+bin/app-ps1
+lib/App/PS1.pm
+lib/App/PS1/Daemon.pm
+lib/App/PS1/Plugin.pm
+lib/App/PS1/Plugin/Branch.pm
+lib/App/PS1/Plugin/Date.pm
+lib/App/PS1/Plugin/Directory.pm
+lib/App/PS1/Plugin/Face.pm
+lib/App/PS1/Plugin/Processes.pm
+lib/App/PS1/Plugin/Uptime.pm
+
