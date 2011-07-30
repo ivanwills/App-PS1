@@ -52,5 +52,5 @@ TODO: {
 
 }
 
-module_boilerplate_ok('lib/PS1/t/boilerplate.t.pm');
+module_boilerplate_ok('lib/App/PS1.pm');
 
