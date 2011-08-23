@@ -23,14 +23,14 @@ our %EXPORT_TAGS = ();
 #our @EXPORT      = qw//;
 
 sub new {
-	my $caller = shift;
-	my $class  = ref $caller ? ref $caller : $caller;
-	my %param  = @_;
-	my $self   = \%param;
+    my $caller = shift;
+    my $class  = ref $caller ? ref $caller : $caller;
+    my %param  = @_;
+    my $self   = \%param;
 
-	bless $self, $class;
+    bless $self, $class;
 
-	return $self;
+    return $self;
 }
 
 1;
@@ -39,12 +39,12 @@ __END__
 
 =head1 NAME
 
-App::PS1::Daemon - <One-line description of module's purpose>
+App::PS1::Daemon - Gets info that can take a long time to collect so the app_ps1
+command can have the data pre-populated
 
 =head1 VERSION
 
 This documentation refers to App::PS1::Daemon version 0.1.
-
 
 =head1 SYNOPSIS
 
@@ -57,10 +57,20 @@ This documentation refers to App::PS1::Daemon version 0.1.
 
 =head1 DESCRIPTION
 
-A full description of the module and its features.
+This module starts a deamon process (if one doesn't already exist) and
+communicates with that process. The aim of which is to make sure things plugins
+that can take a long time run (eg getting process counts when there are many
+processes running on a system) can do their work at either regular intervals
+or by triggered events and just hand the preprocessed results back to the
+app_ps1 command.
 
-May include numerous subsections (i.e., =head2, =head3, etc.).
+=head2 TODO
 
+Everything.
+
+    * Create an event driven deamon
+    * Work out how to talk to said deamon
+    * Make sure there is only one deamon running at a time per user
 
 =head1 SUBROUTINES/METHODS
 
