@@ -9,6 +9,8 @@ my $builder = Module::Build->new(
 	dist_version_from => 'lib/App/PS1.pm',
 	requires          => {
 		'perl'             => 5.008,
+		'Path::Class'      => 0,
+		'version'          => 0,
 	},
 	build_requires => {
 		'Test::More'       => 0,
