@@ -14,3 +14,5 @@ cover_db
 nytprof*
 tmp*
 *~
+META.yml
+Makefile.PL
