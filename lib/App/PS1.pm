@@ -211,11 +211,10 @@ Patches are welcome.
 =head1 AUTHOR
 
 Ivan Wills - (ivan.wills@gmail.com)
-<Author name(s)>  (<contact address>)
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright (c) 2011 Optus (1 Lyon Park Rd, Macquarie Park, NSW, Australia).
+Copyright (c) 2011 Ivan Wills (14 Mullion Close, Hornsby Heights, NSW, Australia 2077)
 All rights reserved.
 
 This module is free software; you can redistribute it and/or modify it under
