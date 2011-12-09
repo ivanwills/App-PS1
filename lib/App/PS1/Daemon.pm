@@ -61,7 +61,7 @@ This module starts a deamon process (if one doesn't already exist) and
 communicates with that process. The aim of which is to make sure things plugins
 that can take a long time run (eg getting process counts when there are many
 processes running on a system) can do their work at either regular intervals
-or by triggered events and just hand the preprocessed results back to the
+or by triggered events and just hand the pre-processed results back to the
 app_ps1 command.
 
 =head2 TODO
@@ -150,7 +150,7 @@ Ivan Wills - (ivan.wills@gmail.com)
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright (c) 2011 Optus (1 Lyon Park Rd, Macquarie Park, NSW, Australia).
+Copyright (c) 2011 Ivan Wills (14 Mullion Close, Hornsby Heights, NSW Australia 2077).
 All rights reserved.
 
 This module is free software; you can redistribute it and/or modify it under
