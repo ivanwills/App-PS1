@@ -24,7 +24,7 @@ our %EXPORT_TAGS = ();
 
 __PACKAGE__->mk_accessors(qw/ ps1 cols plugins bw low exit parts/);
 
-sub sum(@) {
+sub sum(@) { ## no critic
     my $i = 0;
     $i += $_ || 0 for (@_);
     return $i;
@@ -40,7 +40,7 @@ sub cmd_prompt {
         next if $plugin !~ /^[a-z]+$/;
         next if !$self->load($plugin);
 
-        $options = $options ? eval $options : {};
+        $options = $options ? eval $options : {}; ## no critic
         my ($text, $size) = $self->$plugin($options);
 
         if ($size) {
