@@ -22,4 +22,6 @@ lib/App/PS1/Plugin/Directory.pm
 lib/App/PS1/Plugin/Face.pm
 lib/App/PS1/Plugin/Processes.pm
 lib/App/PS1/Plugin/Uptime.pm
-
+Makefile.PL
+META.yml
+META.json
