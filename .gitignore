@@ -1,10 +1,12 @@
-.*.sw[ponx]
+.*.sw[ponxmn]
 Debian_CPANTS.txt
 App-PS1-*
 .vimtagsdisplay
 tags
 Build
-MYMETA.yml
+MYMETA.*
+META.*
+Makefile.PL
 _build*
 blib*
 Makefile
@@ -12,7 +14,11 @@ pm_to_blib*
 .lwpcookies
 cover_db
 nytprof*
+.prove
 tmp*
 *~
 META.yml
 Makefile.PL
+vim.sh
+temp*
+errors.err

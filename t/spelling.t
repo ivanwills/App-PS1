@@ -15,22 +15,26 @@ eval { require Test::Spelling; Test::Spelling->import() };
 # now check that the spell command is installed
 my $found;
 for my $dir ( split /:/, $ENV{PATH} ) {
-	next if !-d $dir;
-	next if !-x "$dir/spell";
+    next if !-d $dir;
+    next if !-x "$dir/spell";
 
-	$found = 1;
-	last;
+    $found = 1;
+    last;
 }
 
 plan skip_all => "Test::Spelling required for testing POD spelling" if $@;
 plan skip_all => "spell command required for testing POD spelling" if !$found;
 
 add_stopwords(qw/
-    Macquarie
     NSW
-    Optus
+    Hornsby
     Param
+    eg
     app
     ps
+    TODO
+    pre
+    deamon
+    plugins
 /);
 all_pod_files_spelling_ok();

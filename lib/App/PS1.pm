@@ -24,7 +24,7 @@ our %EXPORT_TAGS = ();
 
 __PACKAGE__->mk_accessors(qw/ ps1 cols plugins bw low exit parts/);
 
-sub sum(@) {
+sub sum(@) { ## no critic
     my $i = 0;
     $i += $_ || 0 for (@_);
     return $i;
@@ -40,7 +40,7 @@ sub cmd_prompt {
         next if $plugin !~ /^[a-z]+$/;
         next if !$self->load($plugin);
 
-        $options = $options ? eval $options : {};
+        $options = $options ? eval $options : {}; ## no critic
         my ($text, $size) = $self->$plugin($options);
 
         if ($size) {
@@ -211,11 +211,10 @@ Patches are welcome.
 =head1 AUTHOR
 
 Ivan Wills - (ivan.wills@gmail.com)
-<Author name(s)>  (<contact address>)
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright (c) 2010 Ivan Wills (14 Mullion Close, Hornsby Heights, NSW, Australia 2077)
+Copyright (c) 2011 Ivan Wills (14 Mullion Close, Hornsby Heights, NSW, Australia 2077)
 All rights reserved.
 
 This module is free software; you can redistribute it and/or modify it under
