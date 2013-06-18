@@ -19,6 +19,13 @@ my $builder = Module::Build->new(
         'Test::More'       => 0,
         'Test::NoWarnings' => 0,
     },
+    recommends => {
+        'Term::Size::Any'    => 0,
+        'Term::Colour256'    => 0,
+        'Test::Perl::Critic' => 0,
+        'Test::Kwalitee'     => 0,
+        'Test::Spelling'     => 0,
+    },
     add_to_cleanup     => [ 'App-PS1-*' ],
     create_makefile_pl => 'traditional',
     create_license     => 1,
