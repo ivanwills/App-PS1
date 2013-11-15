@@ -39,7 +39,7 @@ sub branch {
     }
     return if !$type;
 
-    return $self->surround( 4 + length $branch, $self->colour('black', 'black') . $type . ':' . $self->colour('cyan', 'cyan') . $branch );
+    return $self->surround( 4 + length $branch, $self->colour('black', 'black') . $type . ': ' . $self->colour('cyan', 'cyan') . $branch );
 }
 
 1;
