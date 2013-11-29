@@ -79,7 +79,9 @@ sub cmd_prompt {
             $line .= ' ';
         }
         $line .= $self->parts->[-1][1];
-        $out = "\e[48;5;52m$line\e[0m\n";
+
+        my $colour = $ENV{APP_PS1_BACKGROUND} || 52;
+        $out = "\e[48;5;${colour}m$line\e[0m\n";
     }
 
     return $out;
