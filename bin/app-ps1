@@ -41,7 +41,6 @@ exit 0;
 
 sub main {
 
-
     Getopt::Long::Configure('bundling');
     GetOptions(
         \%option,

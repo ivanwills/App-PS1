@@ -10,17 +10,15 @@ use strict;
 use warnings;
 use version;
 use Carp;
-use Scalar::Util;
-use List::Util;
-#use List::MoreUtils;
 use Data::Dumper qw/Dumper/;
 use English qw/ -no_match_vars /;
+use Term::ANSIColor;
 use base qw/Class::Accessor::Fast/;
 
-our $VERSION     = version->new('0.0.1');
-our @EXPORT_OK   = qw//;
-our %EXPORT_TAGS = ();
-#our @EXPORT      = qw//;
+eval { require Term::Colour256 };
+my $t256 = !$EVAL_ERROR;
+
+our $VERSION = version->new('0.0.1');
 
 __PACKAGE__->mk_accessors(qw/ ps1 cols plugins bw low exit parts/);
 
@@ -109,6 +107,29 @@ sub load {
 
     return $self->plugins->{$plugin} = 1;
 }
+
+sub surround {
+    my ($self, $count, $text) = @_;
+
+    return if !defined $text;
+
+    my $left  = SAFE ? '≺' : '<';
+    my $right = SAFE ? '≻' : '>';
+
+    $count += 2;
+    $text = $self->colour('black', 246) . "$left$text" . $self->colour('black', 246) . $right;
+    return ($count, $text);
+}
+
+sub colour {
+    my $self = shift;
+    my $i = 0;
+    return
+          $self->bw            ? ''
+        : $t256 && !$self->low ? Term::Colour256::color(map { $i++ % 2 == 1 ? $_ : () } @_ )
+        :                        Term::ANSIColor::color(map { $i++ % 2 == 0 ? $_ : () } @_ );
+}
+
 
 1;
 
