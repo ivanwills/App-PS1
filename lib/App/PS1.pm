@@ -38,6 +38,21 @@ my %theme = (
         dir_label    => [ 'black' , 'black'  ],
         dir_size     => [ 'cyan'  , 'cyan'   ],
     },
+    green => {
+        # name          Low Colour  Hi Colour
+        background   => [ 'on_green', 'on_22'  ],
+        marker       => [ 'black'   , 246      ],
+        up_time      => [ 'yellow'  , 'yellow' ],
+        up_label     => [ 'black'   , 'black'  ],
+        branch       => [ 'white'   , 190      ],
+        branch_label => [ 'black'   , 'black'  ],
+        date         => [ 'red'     , 9        ],
+        face_happy   => [ 'green'   , 46       ],
+        face_sad     => [ 'red'     , 202      ],
+        dir_name     => [ 'blue'    , 21       ],
+        dir_label    => [ 'black'   , 'black'  ],
+        dir_size     => [ 'cyan'    , 33       ],
+    },
 );
 
 sub new {
