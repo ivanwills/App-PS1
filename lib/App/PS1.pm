@@ -9,7 +9,7 @@ package App::PS1;
 use strict;
 use warnings;
 use version;
-use Carp;
+use Carp qw/cluck/;
 use Data::Dumper qw/Dumper/;
 use English qw/ -no_match_vars /;
 use Term::ANSIColor;
@@ -20,7 +20,42 @@ my $t256 = !$EVAL_ERROR;
 
 our $VERSION = version->new('0.0.1');
 
-__PACKAGE__->mk_accessors(qw/ ps1 cols plugins bw low exit parts/);
+__PACKAGE__->mk_accessors(qw/ ps1 cols plugins bw low exit parts safe theme/);
+
+my %theme = (
+    default => {
+        # name          Low Colour  Hi Colour
+        background   => [ 'black' , 'on_52'  ],
+        marker       => [ 'black' , 246      ],
+        up_time      => [ 'yellow', 'yellow' ],
+        up_label     => [ 'black' , 'black'  ],
+        branch       => [ 'cyan'  , 'cyan'   ],
+        branch_label => [ 'black' , 'black'  ],
+        date         => [ 'red'   , 'red'    ],
+        face_happy   => [ 'green' , 46       ],
+        face_sad     => [ 'red'   , 202      ],
+        dir_name     => [ 'blue'  , 'blue'   ],
+        dir_label    => [ 'black' , 'black'  ],
+        dir_size     => [ 'cyan'  , 'cyan'   ],
+    },
+);
+
+sub new {
+    my ($class, $params) = @_;
+    my $self = $class->SUPER::new($params);
+
+    $self->safe( $ENV{UNICODE_UNSAFE} ) if !defined $self->safe;
+    $self->theme("default")             if !defined $self->theme;
+
+    $theme{ $self->theme } ||= {};
+    for my $name ( keys %{ $theme{ $self->theme } } ) {
+        if ( my $env = $ENV{ 'APP_PS1_' . uc $name } ) {
+            $theme{ $self->theme }{$name} = [ ( $env ) x 2 ];
+        }
+    }
+
+    return $self;
+}
 
 sub sum(@) { ## no critic
     my $i = 0;
@@ -79,7 +114,7 @@ sub cmd_prompt {
         $line .= $self->parts->[-1][1];
 
         my $colour = $ENV{APP_PS1_BACKGROUND} || 52;
-        $out = "\e[48;5;${colour}m$line\e[0m\n";
+        $out = $self->colour('background') . $line . "\e[0m\n";
     }
 
     return $out;
@@ -113,21 +148,22 @@ sub surround {
 
     return if !defined $text;
 
-    my $left  = SAFE ? '≺' : '<';
-    my $right = SAFE ? '≻' : '>';
+    my $left  = $self->safe ? '≺' : '<';
+    my $right = $self->safe ? '≻' : '>';
 
     $count += 2;
-    $text = $self->colour('black', 246) . "$left$text" . $self->colour('black', 246) . $right;
+    $text = $self->colour('marker') . "$left$text" . $self->colour('marker') . $right;
     return ($count, $text);
 }
 
 sub colour {
-    my $self = shift;
-    my $i = 0;
+    my ($self, $name) = @_;
+    my $colour = $theme{$self->theme}{$name} || [];
+    warn $self->theme . " $name @$colour\n";
     return
-          $self->bw            ? ''
-        : $t256 && !$self->low ? Term::Colour256::color(map { $i++ % 2 == 1 ? $_ : () } @_ )
-        :                        Term::ANSIColor::color(map { $i++ % 2 == 0 ? $_ : () } @_ );
+          $self->bw || !$colour ? ''
+        : $t256 && !$self->low  ? Term::Colour256::color($colour->[1])
+        :                         Term::ANSIColor::color($colour->[0]);
 }
 
 

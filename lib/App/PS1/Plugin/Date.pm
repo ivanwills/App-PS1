@@ -26,7 +26,7 @@ sub date {
         $date .= sprintf " %02d:%02d:%02d", $hour, $min, $sec;
     }
 
-    return $self->surround( length $date, $self->colour('red','red') . $date );
+    return $self->surround( length $date, $self->colour('date') . $date );
 }
 
 1;

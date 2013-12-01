@@ -20,7 +20,7 @@ sub face {
     my $exit_code = $self->exit;
     my ($happy, $sad) = (qw/:-) :-(/);
 
-    return ( 3, !$exit_code ? $self->colour('green', 46) . $happy : $exit_code ? $self->colour('red', 202) . $sad : $self->colour('red', 'red') . $sad );
+    return ( 3, !$exit_code ? $self->colour('face_happy') . $happy : $exit_code ? $self->colour('face_sad') . $sad : $self->colour('red', 'red') . $sad );
 }
 
 1;

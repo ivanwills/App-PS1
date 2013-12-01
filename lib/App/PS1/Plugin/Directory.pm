@@ -29,7 +29,7 @@ sub directory {
 
     my $len = length $dir_display;
 
-    my @details = ( $len, $self->colour('blue','blue') . $dir_display );
+    my @details = ( $len, $self->colour('dir_name') . $dir_display );
 
     my @children = $dir->children;
     my $dir_count  = 0;
@@ -55,9 +55,9 @@ sub directory {
     my $dir_length  = 6 + length $dir_count;
     my $file_length = 7 + length $file_count;
     my $size_length = 1 + length $size;
-    $dir_count  = $self->colour('black','black') . " dir:"  . $self->colour('cyan','cyan') . "$dir_count,";
-    $file_count = $self->colour('black','black') . " file:" . $self->colour('cyan','cyan') . "$file_count,";
-    $size       = $self->colour('black','black') . " "      . $self->colour('cyan','cyan') . $size;
+    $dir_count  = $self->colour('dir_label') . " dir:"  . $self->colour('dir_size') . "$dir_count,";
+    $file_count = $self->colour('dir_label') . " file:" . $self->colour('dir_size') . "$file_count,";
+    $size       = $self->colour('dir_label') . " "      . $self->colour('dir_size') . $size;
 
     my $arb = @{$self->parts} + $self->parts_size;
     if ( $details[0] + $dir_length + $file_length + $size_length + $arb < $self->cols ) {

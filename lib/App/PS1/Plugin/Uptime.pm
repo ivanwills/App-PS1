@@ -29,9 +29,9 @@ sub uptime {
 
     my $up = sprintf "%dd%dh%dm", $days, $hours, $minutes;
     my $length = length $up;
-    $up = color('yellow') . $up;
+    $up = $self->colour('up_time') . $up;
 
-    return $self->surround( 4 + $length, color('black')."up: $up" );
+    return $self->surround( 4 + $length, $self->colour('up_label') . "up: $up" );
 }
 
 1;
