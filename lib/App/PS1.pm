@@ -159,7 +159,6 @@ sub surround {
 sub colour {
     my ($self, $name) = @_;
     my $colour = $theme{$self->theme}{$name} || [];
-    warn $self->theme . " $name @$colour\n";
     return
           $self->bw || !$colour ? ''
         : $t256 && !$self->low  ? Term::Colour256::color($colour->[1])
