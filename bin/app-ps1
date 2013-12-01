@@ -30,6 +30,7 @@ my ($name)   = $PROGRAM_NAME =~ m{^.*/(.*?)$}mxs;
 
 my %option = (
     ps1     => $ENV{APP_PS1} || 'face;branch;date;directory;uptime',
+    theme   => $ENV{APP_PS1_THEME} || 'default',
     verbose => 0,
     man     => 0,
     help    => 0,
