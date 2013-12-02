@@ -41,7 +41,7 @@ __END__
 
 =head1 NAME
 
-App::PS1::Plugin::Branch - <One-line description of module's purpose>
+App::PS1::Plugin::Branch - Adds the current branch to prompt
 
 =head1 VERSION
 
@@ -60,13 +60,9 @@ This documentation refers to App::PS1::Plugin::Branch version 0.1.
 
 =head1 SUBROUTINES/METHODS
 
-=head3 C<new ( $search, )>
+=head3 C<branch ()>
 
-Param: C<$search> - type (detail) - description
-
-Return: App::PS1::Plugin::Branch -
-
-Description:
+If the current is under source code controll returns the current branch etc
 
 =head1 DIAGNOSTICS
 

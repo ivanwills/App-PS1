@@ -40,7 +40,7 @@ __END__
 
 =head1 NAME
 
-App::PS1::Plugin::Uptime - <One-line description of module's purpose>
+App::PS1::Plugin::Uptime - Adds system uptime to prompt
 
 =head1 VERSION
 
@@ -59,13 +59,9 @@ This documentation refers to App::PS1::Plugin::Uptime version 0.1.
 
 =head1 SUBROUTINES/METHODS
 
-=head3 C<new ( $search, )>
+=head3 C<uptime ()>
 
-Param: C<$search> - type (detail) - description
-
-Return: App::PS1::Plugin::Uptime -
-
-Description:
+Current system uptime.
 
 =head1 DIAGNOSTICS
 

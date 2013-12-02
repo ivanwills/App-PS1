@@ -82,7 +82,7 @@ __END__
 
 =head1 NAME
 
-App::PS1::Plugin::Directory - <One-line description of module's purpose>
+App::PS1::Plugin::Directory - Current directory information
 
 =head1 VERSION
 
@@ -101,13 +101,9 @@ This documentation refers to App::PS1::Plugin::Directory version 0.1.
 
 =head1 SUBROUTINES/METHODS
 
-=head3 C<new ( $search, )>
+=head3 C<directory ()>
 
-Param: C<$search> - type (detail) - description
-
-Return: App::PS1::Plugin::Directory -
-
-Description:
+Returns info about the current directory's name size files and subdirectories.
 
 =head1 DIAGNOSTICS
 
