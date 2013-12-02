@@ -62,7 +62,7 @@ This documentation refers to App::PS1::Plugin::Branch version 0.1.
 
 =head3 C<branch ()>
 
-If the current is under source code controll returns the current branch etc
+If the current is under source code control returns the current branch etc
 
 =head1 DIAGNOSTICS
 

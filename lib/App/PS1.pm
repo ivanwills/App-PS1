@@ -235,7 +235,7 @@ Load plugins
 
 =head3 C<surround ()>
 
-Suround the text with brackets
+Surround the text with brackets
 
 =head3 C<colour ($name)>
 
