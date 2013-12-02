@@ -1,12 +1,8 @@
-App-PS1-v0.0.1/lib/App/PS1/Daemon.pm
-App-PS1-v0.0.1/lib/App/PS1/Plugin/Branch.pm
-App-PS1-v0.0.1/lib/App/PS1/Plugin/Uptime.pm
 bin/app-ps1
 Build.PL
 Changes
 lib/App/PS1.pm
 lib/App/PS1/Daemon.pm
-lib/App/PS1/Plugin.pm
 lib/App/PS1/Plugin/Branch.pm
 lib/App/PS1/Plugin/Date.pm
 lib/App/PS1/Plugin/Directory.pm
