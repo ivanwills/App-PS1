@@ -36,5 +36,7 @@ add_stopwords(qw/
     pre
     deamon
     plugins
+    Str
+    colour
 /);
 all_pod_files_spelling_ok();

@@ -30,6 +30,7 @@ my ($name)   = $PROGRAM_NAME =~ m{^.*/(.*?)$}mxs;
 
 my %option = (
     ps1     => $ENV{APP_PS1} || 'face;branch;date;directory;uptime',
+    theme   => $ENV{APP_PS1_THEME} || 'default',
     verbose => 0,
     man     => 0,
     help    => 0,
@@ -41,15 +42,15 @@ exit 0;
 
 sub main {
 
-
     Getopt::Long::Configure('bundling');
     GetOptions(
         \%option,
         'ps1|p=s',
         'exit|e=s',
         '256',
-        '16',
-        '2',
+        '16|low',
+        'bw|black-white|2|b!',
+        'theme|t=s',
         'quick_start|quick-start|q',
         'verbose|v+',
         'man',
@@ -73,11 +74,12 @@ sub main {
 
     my @chars = term_chars();
     my $ps1 = App::PS1->new({
-        ps1  => $option{ps1},
-        bw   => $option{2},
-        low  => $option{16},
-        exit => $option{exit},
-        cols => $chars[0],
+        ps1   => $option{ps1},
+        low   => $option{16},
+        bw    => $option{bw},
+        theme => $option{theme},
+        exit  => $option{exit},
+        cols  => $chars[0],
     });
 
     print $ps1->cmd_prompt;

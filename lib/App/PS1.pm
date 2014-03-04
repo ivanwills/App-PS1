@@ -9,20 +9,68 @@ package App::PS1;
 use strict;
 use warnings;
 use version;
-use Carp;
-use Scalar::Util;
-use List::Util;
-#use List::MoreUtils;
+use Carp qw/cluck/;
 use Data::Dumper qw/Dumper/;
 use English qw/ -no_match_vars /;
+use Term::ANSIColor;
 use base qw/Class::Accessor::Fast/;
 
-our $VERSION     = version->new('0.0.1');
-our @EXPORT_OK   = qw//;
-our %EXPORT_TAGS = ();
-#our @EXPORT      = qw//;
+eval { require Term::Colour256 };
+my $t256 = !$EVAL_ERROR;
 
-__PACKAGE__->mk_accessors(qw/ ps1 cols plugins bw low exit parts/);
+our $VERSION = version->new('0.0.1');
+
+__PACKAGE__->mk_accessors(qw/ ps1 cols plugins bw low exit parts safe theme/);
+
+my %theme = (
+    default => {
+        # name          Low Colour  Hi Colour
+        background   => [ 'black' , 'on_52'  ],
+        marker       => [ 'black' , 246      ],
+        up_time      => [ 'yellow', 'yellow' ],
+        up_label     => [ 'black' , 'black'  ],
+        branch       => [ 'cyan'  , 'cyan'   ],
+        branch_label => [ 'black' , 'black'  ],
+        date         => [ 'red'   , 'red'    ],
+        face_happy   => [ 'green' , 46       ],
+        face_sad     => [ 'red'   , 202      ],
+        dir_name     => [ 'blue'  , 'blue'   ],
+        dir_label    => [ 'black' , 'black'  ],
+        dir_size     => [ 'cyan'  , 'cyan'   ],
+    },
+    green => {
+        # name          Low Colour  Hi Colour
+        background   => [ 'on_green', 'on_22'  ],
+        marker       => [ 'black'   , 246      ],
+        up_time      => [ 'yellow'  , 'yellow' ],
+        up_label     => [ 'black'   , 'black'  ],
+        branch       => [ 'white'   , 190      ],
+        branch_label => [ 'black'   , 'black'  ],
+        date         => [ 'red'     , 9        ],
+        face_happy   => [ 'green'   , 46       ],
+        face_sad     => [ 'red'     , 202      ],
+        dir_name     => [ 'blue'    , 21       ],
+        dir_label    => [ 'black'   , 'black'  ],
+        dir_size     => [ 'cyan'    , 33       ],
+    },
+);
+
+sub new {
+    my ($class, $params) = @_;
+    my $self = $class->SUPER::new($params);
+
+    $self->safe( $ENV{UNICODE_UNSAFE} ) if !defined $self->safe;
+    $self->theme("default")             if !defined $self->theme;
+
+    $theme{ $self->theme } ||= {};
+    for my $name ( keys %{ $theme{ $self->theme } } ) {
+        if ( my $env = $ENV{ 'APP_PS1_' . uc $name } ) {
+            $theme{ $self->theme }{$name} = [ ( $env ) x 2 ];
+        }
+    }
+
+    return $self;
+}
 
 sub sum(@) { ## no critic
     my $i = 0;
@@ -79,7 +127,9 @@ sub cmd_prompt {
             $line .= ' ';
         }
         $line .= $self->parts->[-1][1];
-        $out = "\e[48;5;52m$line\e[0m\n";
+
+        my $colour = $ENV{APP_PS1_BACKGROUND} || 52;
+        $out = $self->colour('background') . $line . "\e[0m\n";
     }
 
     return $out;
@@ -108,6 +158,28 @@ sub load {
     return $self->plugins->{$plugin} = 1;
 }
 
+sub surround {
+    my ($self, $count, $text) = @_;
+
+    return if !defined $text;
+
+    my $left  = $self->safe ? '≺' : '<';
+    my $right = $self->safe ? '≻' : '>';
+
+    $count += 2;
+    $text = $self->colour('marker') . "$left$text" . $self->colour('marker') . $right;
+    return ($count, $text);
+}
+
+sub colour {
+    my ($self, $name) = @_;
+    my $colour = $theme{$self->theme}{$name} || [];
+    return
+          $self->bw || !$colour ? ''
+        : $t256 && !$self->low  ? Term::Colour256::color($colour->[1])
+        :                         Term::ANSIColor::color($colour->[0]);
+}
+
 1;
 
 __END__
@@ -120,7 +192,6 @@ App::PS1 - <One-line description of module's purpose>
 
 This documentation refers to App::PS1 version 0.1.
 
-
 =head1 SYNOPSIS
 
    use App::PS1;
@@ -129,78 +200,56 @@ This documentation refers to App::PS1 version 0.1.
    # This section will be as far as many users bother reading, so make it as
    # educational and exemplary as possible.
 
-
 =head1 DESCRIPTION
-
-A full description of the module and its features.
-
-May include numerous subsections (i.e., =head2, =head3, etc.).
-
 
 =head1 SUBROUTINES/METHODS
 
-A separate section listing the public components of the module's interface.
+=head3 C<new ( $param_hash )>
 
-These normally consist of either subroutines that may be exported, or methods
-that may be called on objects belonging to the classes that the module
-provides.
+Param: C<ps1>   Str  What plugins to show on the prompt
+Param: C<low>   Bool Use low (16 bit colour)
+Param: C<bw>    Bool Don't use any colour (black and white)
+Param: C<theme> Str  Use colour theme
+Param: C<exit>  Int  The last program's exit code
+Param: C<cols>  Int  The number of columns wide to assume the terminal is
 
-Name the section accordingly.
-
-In an object-oriented module, this section should begin with a sentence (of the
-form "An object of this class represents ...") to give the reader a high-level
-context to help them understand the methods that are subsequently described.
-
-
-=head3 C<new ( $search, )>
-
-Param: C<$search> - type (detail) - description
-
-Return: App::PS1 -
+Return: App::PS1 - A new object
 
 Description:
 
-=cut
+=head3 C<sum ( @list )>
 
+Adds the values in list and returns the result.
+
+=head3 C<cmd_prompt ()>
+
+Display the command prompt
+
+=head3 C<parts_size ()>
+
+calculate the size of the prompt parts
+
+=head3 C<load ()>
+
+Load plugins
+
+=head3 C<surround ()>
+
+Surround the text with brackets
+
+=head3 C<colour ($name)>
+
+Get the theme colour for C<$name>
 
 =head1 DIAGNOSTICS
 
-A list of every error and warning message that the module can generate (even
-the ones that will "never happen"), with a full explanation of each problem,
-one or more likely causes, and any suggested remedies.
-
 =head1 CONFIGURATION AND ENVIRONMENT
-
-A full explanation of any configuration system(s) used by the module, including
-the names and locations of any configuration files, and the meaning of any
-environment variables or properties that can be set. These descriptions must
-also include details of any configuration language used.
 
 =head1 DEPENDENCIES
 
-A list of all of the other modules that this module relies upon, including any
-restrictions on versions, and an indication of whether these required modules
-are part of the standard Perl distribution, part of the module's distribution,
-or must be installed separately.
-
 =head1 INCOMPATIBILITIES
 
-A list of any modules that this module cannot be used in conjunction with.
-This may be due to name conflicts in the interface, or competition for system
-or program resources, or due to internal limitations of Perl (for example, many
-modules that use source code filters are mutually incompatible).
-
 =head1 BUGS AND LIMITATIONS
-
-A list of known problems with the module, together with some indication of
-whether they are likely to be fixed in an upcoming release.
-
-Also, a list of restrictions on the features the module does provide: data types
-that cannot be handled, performance issues and the circumstances in which they
-may arise, practical limitations on the size of data sets, special cases that
-are not (yet) handled, etc.
-
-The initial template usually just has:
 
 There are no known bugs in this module.
 
