@@ -30,7 +30,7 @@ sub node {
 
     my ($version) = $path =~ /installed.(.*?).lib/;
 
-    return $self->surround( 5 + length $version, $self->colour('black', 'black') . 'node ' . $self->colour('cyan', 'cyan') . $version );
+    return $self->surround( 5 + length $version, $self->colour('branch_label') . 'node ' . $self->colour('branch') . $version );
 }
 
 1;

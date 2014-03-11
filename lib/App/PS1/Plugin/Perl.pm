@@ -30,7 +30,7 @@ sub perl {
 
     my ($version) = $path =~ /perl-(.*)$/;
 
-    return $self->surround( 5 + length $version, $self->colour('black', 'black') . 'perl ' . $self->colour('cyan', 'cyan') . $version );
+    return $self->surround( 5 + length $version, $self->colour('branch_label') . 'perl ' . $self->colour('branch') . $version );
 }
 
 1;
