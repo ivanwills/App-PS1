@@ -33,8 +33,7 @@ __END__
 
 =head1 NAME
 
-App::PS1::Daemon - Gets info that can take a long time to collect so the app_ps1
-command can have the data pre-populated
+App::PS1::Daemon - Gets info that can take a long time to collect so the app_ps1 command can have the data pre-populated
 
 =head1 VERSION
 
