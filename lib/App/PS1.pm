@@ -89,7 +89,7 @@ sub cmd_prompt {
         next if !$self->load($plugin);
 
         $options = $options ? eval $options : {}; ## no critic
-        my ($text, $size) = $self->$plugin($options);
+        my ($text, $size) = eval { $self->$plugin($options) };
 
         if ($size) {
             push @{$self->parts}, [ $text, $size ];
