@@ -74,3 +74,4 @@ temp*
 errors.err
 TODO
 ^MYMETA\.json$
+.*.tag
