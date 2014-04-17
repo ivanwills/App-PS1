@@ -21,7 +21,7 @@ sub branch {
     my ($type, $branch);
     my $dir = dir('.')->resolve->absolute;
     while ( $dir ne $dir->parent ) {
-        if ( -d $dir->subdir('.git') ) {
+        if ( -f $dir->file('.git', 'HEAD') ) {
             $type = 'git';
             $branch = $dir->subdir('.git')->file('HEAD')->slurp;
             chomp $branch;
