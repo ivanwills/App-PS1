@@ -28,7 +28,9 @@ sub ruby {
     my $name = $ENV{RUBY_VERSION};
     return if !$name;
 
-    my ($version) = $name =~ /^([\d.]+)/;
+    my ($version) = $name =~ /^ruby-([\d.]+)/;
+
+    return if !$version;
 
     return $self->surround( 5 + length $version, $self->colour('branch_label') . 'ruby ' . $self->colour('branch') . $version );
 }
