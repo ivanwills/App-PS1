@@ -25,7 +25,7 @@ our %EXPORT_TAGS = ();
 
 sub ruby {
     my ($self) = @_;
-    my $name = $ENV{rvm_version};
+    my $name = $ENV{RUBY_VERSION};
     return if !$name;
 
     my ($version) = $name =~ /^([\d.]+)/;
