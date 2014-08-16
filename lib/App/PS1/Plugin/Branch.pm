@@ -26,6 +26,10 @@ sub branch {
             $branch = $dir->subdir('.git')->file('HEAD')->slurp;
             chomp $branch;
             $branch =~ s/^.*\/(.*)/$1/xms;
+            if ( length $branch == 40 && $branch =~ /^[\da-f]+$/ ) {
+                my ($ans) = map {/^[*] [(]detached from (.*)[)]$/; $1} grep {/^[*]\s/} `git branch --contains $branch`;
+                $branch = "[$ans]" if $ans;
+            }
         }
         last if $type;
         $dir = $dir->parent;
