@@ -201,7 +201,7 @@ __END__
 
 =head1 NAME
 
-App::PS1 - <One-line description of module's purpose>
+App::PS1 - Module to load PS1 status line elements
 
 =head1 VERSION
 
