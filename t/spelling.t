@@ -38,5 +38,10 @@ add_stopwords(qw/
     plugins
     Str
     colour
+    nodejs
+    nave
+    perlbrew
+    nvm
+    rvm
 /);
 all_pod_files_spelling_ok();
