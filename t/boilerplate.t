@@ -21,7 +21,7 @@ sub not_in_file_ok {
     }
 
     for my $test (keys %regex) {
-        ok !$violated{$test}, $test or diag "$test appears on lines @{$violated{$_}}";
+        ok !$violated{$test}, $test or diag "$test appears on lines @{$violated{$test}}";
     }
 }
 
