@@ -1,0 +1,59 @@
+=pod
+
+=begin html
+
+<a href="https://travis-ci.org/ivanwills/App-PS1"><img src="https://travis-ci.org/ivanwills/App-PS1.png" alt="App-PS1"></a>
+
+=head1 App-PS1
+
+Sick of the boring BASH shell command prompt, want more information displayedi
+L<App-PS1> does this.
+
+It provides a nice way of addind a line sepperator for your prompt which you
+can fill with various peices of information like the directory, status of the
+last command and more.
+
+=head1 INSTALLATION
+
+To install this module, run the following commands:
+
+    perl Build.PL
+    ./Build
+    ./Build test
+    ./Build install
+
+=head1 SUPPORT AND DOCUMENTATION
+
+After installing, you can find documentation for this module with the
+perldoc command.
+
+    perldoc App::PS1
+
+You can also look for information at:
+
+    RT, CPAN's request tracker
+        http://rt.cpan.org/NoAuth/Bugs.html?Dist=App-PS1
+
+    AnnoCPAN, Annotated CPAN documentation
+        http://annocpan.org/dist/App-PS1
+
+    CPAN Ratings
+        http://cpanratings.perl.org/d/App-PS1
+
+    Search CPAN
+        http://search.cpan.org/dist/App-PS1/
+
+    Source Code
+        git://github.com/ivanwills/App-PS1.git
+
+=head1 COPYRIGHT AND LICENCE
+
+Copyright (C) 2010-2014 Ivan Wills
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of either: the GNU General Public License as published
+by the Free Software Foundation; or the Artistic License.
+
+See http://dev.perl.org/licenses/ for more information.
+
+=cut
