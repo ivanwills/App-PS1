@@ -9,11 +9,9 @@ package App::PS1::Plugin::Processes;
 use strict;
 use warnings;
 use version;
-use Carp;
-use Data::Dumper qw/Dumper/;
 use English qw/ -no_match_vars /;
 
-our $VERSION = version->new('0.0.1');
+our $VERSION = 0.001;
 
 1;
 
@@ -25,7 +23,7 @@ App::PS1::Plugin::Processes - Running processes to prompt
 
 =head1 VERSION
 
-This documentation refers to App::PS1::Plugin::Processes version 0.1.
+This documentation refers to App::PS1::Plugin::Processes version 0.001.
 
 =head1 SYNOPSIS
 

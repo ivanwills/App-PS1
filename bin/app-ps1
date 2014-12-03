@@ -8,12 +8,8 @@
 
 use strict;
 use warnings;
-use Scalar::Util;
-use List::Util;
-#use List::MoreUtils;
 use Getopt::Long;
 use Pod::Usage;
-use Data::Dumper qw/Dumper/;
 use English qw/ -no_match_vars /;
 use FindBin qw/$Bin/;
 use Path::Class;
@@ -25,7 +21,7 @@ if ($tsa) {
     Term::Size::Any->import(qw/chars/);
 }
 
-our $VERSION = '0.001';
+our $VERSION = 0.001;
 my ($name)   = $PROGRAM_NAME =~ m{^.*/(.*?)$}mxs;
 
 my %option = (
@@ -113,7 +109,7 @@ app-ps1 - Command prompt generator
 
 =head1 VERSION
 
-This documentation refers to app-ps1 version 0.1.
+This documentation refers to app-ps1 version 0.001.
 
 =head1 SYNOPSIS
 

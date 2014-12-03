@@ -14,7 +14,7 @@ use Data::Dumper qw/Dumper/;
 use English qw/ -no_match_vars /;
 use base qw/Class::Accessor::Fast/;
 
-our $VERSION = version->new('0.0.1');
+our $VERSION = 0.001;
 
 sub new {
     my $caller = shift;
@@ -37,7 +37,7 @@ App::PS1::Daemon - Gets info that can take a long time to collect so the app_ps1
 
 =head1 VERSION
 
-This documentation refers to App::PS1::Daemon version 0.1.
+This documentation refers to App::PS1::Daemon version 0.001.
 
 =head1 SYNOPSIS
 

@@ -10,15 +10,10 @@ use strict;
 use warnings;
 use version;
 use Carp;
-use Scalar::Util;
-use List::Util;
-#use List::MoreUtils;
-use Data::Dumper qw/Dumper/;
 use English qw/ -no_match_vars /;
-use Path::Class;
 use base qw/App::PS1::Plugin/;
 
-our $VERSION     = version->new('0.0.1');
+our $VERSION     = 0.001;
 our @EXPORT_OK   = qw//;
 our %EXPORT_TAGS = ();
 #our @EXPORT      = qw//;
@@ -43,7 +38,7 @@ App::PS1::Plugin::Perl - Shows current version of Perl if using perlbrew
 
 =head1 VERSION
 
-This documentation refers to App::PS1::Plugin::Perl version 0.1.
+This documentation refers to App::PS1::Plugin::Perl version 0.001.
 
 =head1 SYNOPSIS
 
