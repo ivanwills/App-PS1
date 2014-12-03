@@ -8,17 +8,16 @@ my $builder = Module::Build->new(
     dist_author       => 'Ivan Wills <ivan.wills@gmail.com>',
     dist_version_from => 'lib/App/PS1.pm',
     requires          => {
-        'perl'                  => 5.008,
-        'Class::Accessor::Fast' => 0,
-        'Path::Class'           => 0,
-        'version'               => 0,
+        'perl'        => 5.006,
+        'Path::Class' => 0,
+        'version'     => 0,
     },
     configure_requires => {
         'Module::Build' => 0.38,
     },
     build_requires => {
-        'Test::More'       => 0,
-        'Test::NoWarnings' => 0,
+        'Test::More'     => 0,
+        'Test::Warnings' => 0,
     },
     recommends => {
         'Term::Size::Any'    => 0,
