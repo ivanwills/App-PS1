@@ -25,10 +25,20 @@ our %EXPORT_TAGS = ();
 
 sub node {
     my ($self) = @_;
-    my $path = $ENV{NODE_PATH};
-    return if !$path;
+    my $version;
+    my $path;
 
-    my ($version) = $path =~ /installed.(.*?).lib/;
+    if ( $path = $ENV{NODE_PATH} ) {
+        # best guess for nave
+        ($version) = $path =~ /installed.(.*?).lib/;
+    }
+    elsif ( $path = $ENV{NVM_BIN} ) {
+        # best guess for nvm
+        ($version) = $path =~ m{/([^/]+)/bin};
+    }
+    else {
+        return;
+    }
 
     return $self->surround( 5 + length $version, $self->colour('branch_label') . 'node ' . $self->colour('branch') . $version );
 }
