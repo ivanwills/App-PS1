@@ -1,6 +1,8 @@
+.travis.yml
 bin/app-ps1
 Build.PL
 Changes
+lib/App/PS1.pm
 lib/App/PS1/Daemon.pm
 lib/App/PS1/Plugin/Branch.pm
 lib/App/PS1/Plugin/Date.pm
@@ -11,7 +13,6 @@ lib/App/PS1/Plugin/Perl.pm
 lib/App/PS1/Plugin/Processes.pm
 lib/App/PS1/Plugin/Ruby.pm
 lib/App/PS1/Plugin/Uptime.pm
-lib/App/PS1.pm
 LICENSE
 Makefile.PL
 MANIFEST
