@@ -17,6 +17,7 @@ sub branch {
     my ($self) = @_;
     my ($type, $branch);
     my $dir = dir('.')->resolve->absolute;
+    my $git = git();
     while ( $dir ne $dir->parent ) {
         if ( -f $dir->file('.git', 'HEAD') ) {
             $type = 'git';
@@ -24,7 +25,7 @@ sub branch {
             chomp $branch;
             $branch =~ s/^ref: \s+ refs\/heads\/(.*)/$1/xms;
             if ( length $branch == 40 && $branch =~ /^[\da-f]+$/ ) {
-                my ($ans) = map {/^[*] [(]detached from (.*)[)]$/; $1} grep {/^[*]\s/} `git branch --contains $branch`;
+                my ($ans) = map {/^[*] [(]detached from (.*)[)]$/; $1} grep {/^[*]\s/} `$git branch --contains $branch`;
                 $branch = "[$ans]" if $ans;
             }
         }
@@ -34,6 +35,13 @@ sub branch {
     return if !$type;
 
     return $self->surround( 4 + length $branch, $self->colour('branch_label') . $type . ' ' . $self->colour('branch') . $branch );
+}
+
+sub git {
+    for (split /:/, $ENV{PATH}) {
+        return "$_/git" if -x "$_/git";
+    }
+    return 'git';
 }
 
 1;
