@@ -8,7 +8,6 @@ package App::PS1::Plugin::Branch;
 
 use strict;
 use warnings;
-use version;
 use English qw/ -no_match_vars /;
 use Path::Class;
 

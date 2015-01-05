@@ -8,7 +8,6 @@ package App::PS1::Plugin::Node;
 
 use strict;
 use warnings;
-use version;
 use English qw/ -no_match_vars /;
 use base qw/App::PS1::Plugin/;
 

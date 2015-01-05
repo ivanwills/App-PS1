@@ -8,7 +8,6 @@ package App::PS1::Plugin::Ruby;
 
 use strict;
 use warnings;
-use version;
 use English qw/ -no_match_vars /;
 use Path::Class;
 use base qw/App::PS1::Plugin/;

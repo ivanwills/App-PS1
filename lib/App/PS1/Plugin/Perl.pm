@@ -8,7 +8,6 @@ package App::PS1::Plugin::Perl;
 
 use strict;
 use warnings;
-use version;
 use Carp;
 use English qw/ -no_match_vars /;
 use base qw/App::PS1::Plugin/;

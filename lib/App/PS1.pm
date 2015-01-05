@@ -8,7 +8,6 @@ package App::PS1;
 
 use strict;
 use warnings;
-use version;
 use Carp qw/cluck/;
 use Data::Dumper qw/Dumper/;
 use English qw/ -no_match_vars /;

@@ -8,7 +8,6 @@ package App::PS1::Plugin::Processes;
 
 use strict;
 use warnings;
-use version;
 use English qw/ -no_match_vars /;
 
 our $VERSION = 0.001;
