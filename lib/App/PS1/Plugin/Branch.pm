@@ -18,6 +18,7 @@ sub branch {
     my ($type, $branch);
     my $dir = dir('.')->resolve->absolute;
     my $git = git();
+    my $cvs = cvs();
     while ( $dir ne $dir->parent ) {
         if ( -f $dir->file('.git', 'HEAD') ) {
             $type = 'git';
@@ -28,6 +29,17 @@ sub branch {
                 my ($ans) = map {/^[*] [(]detached from (.*)[)]$/; $1} grep {/^[*]\s/} `$git branch --contains $branch`;
                 $branch = "[$ans]" if $ans;
             }
+        }
+        elsif (-f $dir->file('CVS', 'Tag')) {
+            $type = 'cvs';
+            $branch = $dir->file('CVS', 'Tag')->slurp;
+            chomp $branch;
+            $branch =~ s/^N//;
+            $branch = "($branch)";
+        }
+        elsif (-d $dir->file('CVS')) {
+            $type   = 'cvs';
+            $branch = 'master';
         }
         last if $type;
         $dir = $dir->parent;
@@ -42,6 +54,13 @@ sub git {
         return "$_/git" if -x "$_/git";
     }
     return 'git';
+}
+
+sub cvs {
+    for (split /:/, $ENV{PATH}) {
+        return "$_/cvs" if -x "$_/cvs";
+    }
+    return 'cvs';
 }
 
 1;
