@@ -37,7 +37,7 @@ sub branch {
             $branch =~ s/^N//;
             $branch = "($branch)";
         }
-        elsif (-d $dir->file('CVS')) {
+        elsif (-f $dir->file('CVS', 'Root')) {
             $type   = 'cvs';
             $branch = 'master';
         }
