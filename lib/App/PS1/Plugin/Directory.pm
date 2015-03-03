@@ -11,15 +11,15 @@ use warnings;
 use Carp;
 use Data::Dumper qw/Dumper/;
 use English qw/ -no_match_vars /;
-use Path::Class;
+use Path::Tiny;
 
 our $VERSION = 0.001;
 
 sub directory {
     my ($self) = @_;
 
-    my $dir  = dir('.')->absolute;
-    my $home = dir($ENV{HOME});
+    my $dir  = path('.')->absolute;
+    my $home = path($ENV{HOME});
     my $dir_display = "$dir";
 
     if ($home->subsumes($dir) ) {

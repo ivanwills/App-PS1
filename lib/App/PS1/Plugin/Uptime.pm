@@ -12,13 +12,13 @@ use Carp;
 use Data::Dumper qw/Dumper/;
 use English qw/ -no_match_vars /;
 use Term::ANSIColor;
-use Path::Class;
+use Path::Tiny;
 
 our $VERSION = 0.001;
 
 sub uptime {
     my ($self) = @_;
-    my ($uptime) = eval { split /\s+/, file('/proc/uptime')->slurp };
+    my ($uptime) = eval { split /\s+/, path('/proc/uptime')->slurp };
 
     return if !$uptime;
 

@@ -9,20 +9,19 @@ package App::PS1::Plugin::Branch;
 use strict;
 use warnings;
 use English qw/ -no_match_vars /;
-use Path::Class;
+use Path::Tiny;
 
 our $VERSION = 0.001;
 
 sub branch {
     my ($self) = @_;
     my ($type, $branch);
-    my $dir = dir('.')->resolve->absolute;
+    my $dir = eval { path('.')->realpath };
     my $git = git();
     my $cvs = cvs();
     while ( $dir ne $dir->parent ) {
-        if ( -f $dir->file('.git', 'HEAD') ) {
-            $type = 'git';
-            $branch = $dir->subdir('.git')->file('HEAD')->slurp;
+        if ( -f $dir->child('.git', 'HEAD') ) {
+            $branch = $dir->child('.git')->child('HEAD')->slurp;
             chomp $branch;
             $branch =~ s/^ref: \s+ refs\/heads\/(.*)/$1/xms;
             if ( length $branch == 40 && $branch =~ /^[\da-f]+$/ ) {
@@ -30,20 +29,22 @@ sub branch {
                 $branch = "[$ans]" if $ans;
             }
         }
-        elsif (-f $dir->file('CVS', 'Tag')) {
+        elsif (-f $dir->child('CVS', 'Tag')) {
             $type = 'cvs';
-            $branch = $dir->file('CVS', 'Tag')->slurp;
+            $branch = $dir->child('CVS', 'Tag')->slurp;
             chomp $branch;
             $branch =~ s/^N//;
             $branch = "($branch)";
         }
-        elsif (-f $dir->file('CVS', 'Root')) {
+        elsif (-f $dir->child('CVS', 'Root')) {
             $type   = 'cvs';
             $branch = 'master';
         }
+
         last if $type;
         $dir = $dir->parent;
     }
+
     return if !$type;
 
     return $self->surround( 4 + length $branch, $self->colour('branch_label') . $type . ' ' . $self->colour('branch') . $branch );

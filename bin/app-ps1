@@ -9,10 +9,7 @@
 use strict;
 use warnings;
 use Getopt::Long;
-use Pod::Usage;
 use English qw/ -no_match_vars /;
-use FindBin qw/$Bin/;
-use Path::Class;
 use App::PS1;
 
 eval { require Term::Size::Any };
@@ -99,6 +96,11 @@ sub term_chars {
         $ENV{LINES}   || $ENV{PS1_ROWS} || 40
     ) if !@chars;
     return @chars;
+}
+
+sub pod2usage {
+    require Pod::Usage;
+    Pod::Usage::pod2usage(@_);
 }
 
 __DATA__
