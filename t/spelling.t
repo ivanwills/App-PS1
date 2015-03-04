@@ -43,5 +43,6 @@ add_stopwords(qw/
     perlbrew
     nvm
     rvm
+    cvs
 /);
 all_pod_files_spelling_ok();
