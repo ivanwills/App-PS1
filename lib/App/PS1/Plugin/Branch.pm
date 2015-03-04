@@ -94,6 +94,14 @@ This documentation refers to App::PS1::Plugin::Branch version 0.001.
 
 If the current is under source code control returns the current branch etc
 
+=head3 C<git ()>
+
+Returns the full path for the git executable
+
+=head3 C<cvs ()>
+
+Returns the full path for the cvs executable
+
 =head1 DIAGNOSTICS
 
 =head1 CONFIGURATION AND ENVIRONMENT
