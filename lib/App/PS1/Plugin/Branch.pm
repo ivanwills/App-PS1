@@ -21,6 +21,7 @@ sub branch {
     my $cvs = cvs();
     while ( $dir ne $dir->parent ) {
         if ( -f $dir->child('.git', 'HEAD') ) {
+            $type = 'git';
             $branch = $dir->child('.git')->child('HEAD')->slurp;
             chomp $branch;
             $branch =~ s/^ref: \s+ refs\/heads\/(.*)/$1/xms;
