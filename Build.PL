@@ -8,9 +8,10 @@ my $builder = Module::Build->new(
     dist_author       => 'Ivan Wills <ivan.wills@gmail.com>',
     dist_version_from => 'lib/App/PS1.pm',
     requires          => {
-        'perl'       => 5.006,
-        'Path::Tiny' => 0,
-        'version'    => 0,
+        'perl'                  => 5.006,
+        'Class::Accessor::Fast' => 0,
+        'Path::Tiny'            => 0,
+        'version'               => 0,
     },
     configure_requires => {
         'Module::Build' => 0.38,
