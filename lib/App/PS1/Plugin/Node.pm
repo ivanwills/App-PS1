@@ -33,6 +33,8 @@ sub node {
         return;
     }
 
+    return if !$version;
+
     return $self->surround( 5 + length $version, $self->colour('branch_label') . 'node ' . $self->colour('branch') . $version );
 }
 
