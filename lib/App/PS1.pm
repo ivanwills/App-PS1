@@ -113,6 +113,14 @@ sub cmd_prompt {
     my $total = $self->parts_size;
     my $spare = $self->cols - $total;
     my $spare_size = $spare / ( @{$self->parts} - 1 );
+
+    while ($spare < 0 || $spare_size < 0) {
+        pop @{$self->parts};
+        $total = $self->parts_size;
+        $spare = $self->cols - $total;
+        $spare_size = $spare / ( @{$self->parts} - 1 );
+    }
+
     if ( $total <= $self->cols ) {
         my $line = '';
         my $extra = 0;
