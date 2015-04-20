@@ -116,6 +116,12 @@ sub cmd_prompt {
 
     while ($spare < 0 || $spare_size < 0) {
         pop @{$self->parts};
+        if ( @{$self->parts} == 1 ) {
+            $total = $self->parts_size;
+            $spare = $self->cols - $total;
+            $spare_size = $spare;
+            last;
+        }
         $total = $self->parts_size;
         $spare = $self->cols - $total;
         $spare_size = $spare / ( @{$self->parts} - 1 );
