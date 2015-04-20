@@ -14,7 +14,15 @@ This is a semi-colon seperated list of plugins that are to be used to make up
 the command prompt. The plugins accept JSON formatted arguments after the
 name and before the next colon eg:
 
-    APP_PS1=i'smile;dir{"current":true};uptime'
+    APP_PS1='smile;dir{"current":true};uptime'
+
+Screen
+------
+
+Need to fix the current issue with screen realestate where when the output is
+too long nothing is shown. Current fix just removes elements till it fits
+other options include going on to multiple lines or reasking plugins for
+shorter text.
 
 Libraries
 ---------
