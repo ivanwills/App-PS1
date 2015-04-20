@@ -48,7 +48,19 @@ sub branch {
 
     return if !$type;
 
-    return $self->surround( 4 + length $branch, $self->colour('branch_label') . $type . ' ' . $self->colour('branch') . $branch );
+    $type = $self->cols && $self->cols > 40 ? "$type " : '';
+
+    my $max_branch_width = ( $self->cols || 80 ) / 3;
+    if ( length $branch > $max_branch_width ) {
+        $branch = substr $branch, 0, $max_branch_width;
+        $branch .= '...';
+    }
+
+    return $self->surround(
+        length $type . $branch,
+        $self->colour('branch_label') . $type
+        . $self->colour('branch') . $branch
+    );
 }
 
 sub git {

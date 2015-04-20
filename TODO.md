@@ -20,9 +20,7 @@ Screen
 ------
 
 Need to fix the current issue with screen realestate where when the output is
-too long nothing is shown. Current fix just removes elements till it fits
-other options include going on to multiple lines or reasking plugins for
-shorter text.
+too long nothing is shown.
 
 Libraries
 ---------
