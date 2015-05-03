@@ -10,7 +10,6 @@ use strict;
 use warnings;
 use Carp;
 use English qw/ -no_match_vars /;
-use base qw/App::PS1::Plugin/;
 
 our $VERSION     = 0.001;
 our @EXPORT_OK   = qw//;

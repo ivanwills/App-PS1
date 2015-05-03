@@ -9,7 +9,6 @@ package App::PS1::Plugin::Ruby;
 use strict;
 use warnings;
 use English qw/ -no_match_vars /;
-use base qw/App::PS1::Plugin/;
 
 our $VERSION = 0.001;
 
