@@ -124,7 +124,7 @@ sub cmd_prompt {
         }
         $total = $self->parts_size;
         $spare = $self->cols - $total;
-        $spare_size = $spare / ( @{$self->parts} - 1 );
+        $spare_size = ( @{$self->parts} - 1 ) ? $spare / ( @{$self->parts} - 1 ) : 0;
     }
 
     if ( $total <= $self->cols ) {
