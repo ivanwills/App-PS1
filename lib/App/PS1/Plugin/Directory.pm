@@ -25,6 +25,9 @@ sub directory {
     if ($home->subsumes($dir) ) {
         $dir_display =~ s/$home/~/xms;
     }
+    if (length $dir_display > 20) {
+        $dir_display = '...' . substr $dir_display, -20, 20;
+    }
 
     my $len = length $dir_display;
 
