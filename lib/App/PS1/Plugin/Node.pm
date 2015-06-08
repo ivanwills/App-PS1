@@ -13,20 +13,19 @@ use English qw/ -no_match_vars /;
 our $VERSION     = 0.002;
 our @EXPORT_OK   = qw//;
 our %EXPORT_TAGS = ();
-#our @EXPORT      = qw//;
 
 sub node {
     my ($self) = @_;
     my $version;
     my $path;
 
-    if ( $path = $ENV{NODE_PATH} ) {
-        # best guess for nave
-        ($version) = $path =~ /installed.(.*?).lib/;
-    }
-    elsif ( $path = $ENV{NVM_BIN} ) {
+    if ( $path = $ENV{NVM_BIN} ) {
         # best guess for nvm
         ($version) = $path =~ m{/([^/]+)/bin};
+    }
+    elsif ( $path = $ENV{NODE_PATH} ) {
+        # best guess for nave
+        ($version) = $path =~ /installed.(.*?).lib/;
     }
     else {
         return;
