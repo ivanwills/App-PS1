@@ -1,5 +1,10 @@
 Revision history for App-PS1
 
+0.002   2015-06-08
+        Updating for release of version 0.002
+        Added limiting dir name length (Ivan Wills)
+        Set max branch name length to 60 characters (Ivan Wills)
+
 0.001   2014-08-29
         Removed unused modules and cleaned up version number (Ivan Wills)
         Updated build (Ivan Wills)

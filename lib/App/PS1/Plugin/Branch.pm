@@ -11,7 +11,7 @@ use warnings;
 use English qw/ -no_match_vars /;
 use Path::Tiny;
 
-our $VERSION = 0.001;
+our $VERSION = 0.002;
 
 sub branch {
     my ($self) = @_;
@@ -90,7 +90,7 @@ App::PS1::Plugin::Branch - Adds the current branch to prompt
 
 =head1 VERSION
 
-This documentation refers to App::PS1::Plugin::Branch version 0.001.
+This documentation refers to App::PS1::Plugin::Branch version 0.002.
 
 =head1 SYNOPSIS
 
