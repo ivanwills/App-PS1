@@ -3,6 +3,9 @@
 =begin html
 
 <a href="https://travis-ci.org/ivanwills/App-PS1"><img src="https://travis-ci.org/ivanwills/App-PS1.png" alt="App-PS1"></a>
+<a href="https://coveralls.io/r/ivanwills/App-PS1?branch=master"><img src="https://coveralls.io/repos/ivanwills/App-PS1/badge.svg?branch=master" alt="Coverage Status" /></a>
+
+=end html
 
 =head1 App-PS1
 
@@ -12,6 +15,32 @@ L<App-PS1> does this.
 It provides a nice way of addind a line sepperator for your prompt which you
 can fill with various peices of information like the directory, status of the
 last command and more.
+
+=head1 Examples
+
+Basic:
+
+=begin html
+
+<img src="https://ivanwills.github.io/App-PS1/img/ps1.png" alt="">
+
+=end html
+
+After running C<$ perlbrew use perl-bleed>
+
+=begin html
+
+<img src="https://ivanwills.github.io/App-PS1/img/ps1-perlbrew.png" alt="" />
+
+=end html
+
+After running C<$ perlbrew use perl-bleed>
+
+=begin html
+
+<img src="https://ivanwills.github.io/App-PS1/img/ps1-node.png" alt="" />
+
+=end html
 
 =head1 INSTALLATION
 
