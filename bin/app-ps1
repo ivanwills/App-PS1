@@ -131,7 +131,7 @@ This documentation refers to app-ps1 version 0.002.
                         ruby - Current ruby version if using rvm
                         uptime - Current system uptime
   -e --exit[=]str   Last program's exit code (needed for face)
-  -q --quick_start  A quick start helper
+  -q --quick-start  A quick start helper
      --256          Show colours for 256 colour terminal (Default)
      --16           Terminal only supports 16 colours
      --2            Terminal does no support colour
