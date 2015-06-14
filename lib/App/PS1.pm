@@ -222,13 +222,13 @@ This documentation refers to App::PS1 version 0.002.
 
 =head1 SYNOPSIS
 
-   use App::PS1;
-
-   # Brief but working code example(s) here showing the most common usage(s)
-   # This section will be as far as many users bother reading, so make it as
-   # educational and exemplary as possible.
+   # in your ~/.bashrc file
+   export APP_PS1='face;branch;date;direcory;perl;node;ruby;uptime'
+   export PS1="\[\`app-ps1 -e\$?\`\]\n\u@\h \\\$ "
 
 =head1 DESCRIPTION
+
+This is the engine for the C<app-ps1> command.
 
 =head1 SUBROUTINES/METHODS
 

@@ -115,11 +115,22 @@ This documentation refers to app-ps1 version 0.002.
 
 =head1 SYNOPSIS
 
-   app-ps1 [option]
+   app-ps1 --quick-start
+   app-ps1 -e $? [--256|--16|--2] [(--ps1|-p) 'semicolon-separaged-list']
 
  OPTIONS:
   -p --ps1[=]str    The prompt string (Default $ENV{APP_PS1} || 'face;branch;date;directory;uptime')
-  -e --exit[=]str   Last program's exit code
+                    Values:
+                        branch - Show the Git, SVN or CVS branch of the current directory (if any)
+                        date - the date and time of when the prompt is displayed
+                        directory - Info about the current directory (name, subdirs, files disk usage)
+                        face - Happy face if last command exited with 0 sad otherwise
+                        node - Current nodejs version if using nvm or nave
+                        perl - Current perl version if using perlbrew
+                        processes - Info about the current processes
+                        ruby - Current ruby version if using rvm
+                        uptime - Current system uptime
+  -e --exit[=]str   Last program's exit code (needed for face)
   -q --quick_start  A quick start helper
      --256          Show colours for 256 colour terminal (Default)
      --16           Terminal only supports 16 colours
@@ -129,6 +140,10 @@ This documentation refers to app-ps1 version 0.002.
      --version       Prints the version information
      --help          Prints this help information
      --man           Prints the full documentation for app-ps1
+
+   # in your ~/.bashrc file
+   export APP_PS1='face;branch;date;direcory;perl;node;ruby;uptime'
+   export PS1="\[\`app-ps1 -e\$?\`\]\n\u@\h \\\$ "
 
 =head1 DESCRIPTION
 
