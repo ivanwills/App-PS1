@@ -16,7 +16,19 @@ It provides a nice way of addind a line sepperator for your prompt which you
 can fill with various peices of information like the directory, status of the
 last command and more.
 
+The C<app-ps1> command displays the elements put into either C<$APP_PS1>
+environment variable or passed with C<--ps1> parameter. The elements are
+all calculated and if one more more has no content (eg branch, perl, node
+or ruby) it is removed and all the rest are show. If there is too much to
+display on the line (requires L<Term::Size::Any> or C<$PS1_COLS> environment
+variable to be set) the elements from the right are dropped until the line
+would fit.
+
 =head1 Examples
+
+   # in your ~/.bashrc file
+   export APP_PS1='face;branch;date;direcory;perl;node;ruby;uptime'
+   export PS1="\[\`app-ps1 -e\$?\`\]\n\u@\h \\\$ "
 
 Basic:
 
@@ -34,7 +46,7 @@ After running C<$ perlbrew use perl-bleed>
 
 =end html
 
-After running C<$ perlbrew use perl-bleed>
+After running C<$ nvm use v0.12.4>
 
 =begin html
 
