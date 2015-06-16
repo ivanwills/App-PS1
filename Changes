@@ -1,5 +1,13 @@
 Revision history for App-PS1
 
+0.003   2015-06-16
+        Updating for release of version 0.003
+        Added documentation about environment variables (Ivan Wills)
+        Added more to the description (Ivan Wills)
+        Added image examples (Ivan Wills)
+        Fixed param name (Ivan Wills)
+        Better documentation for command (Ivan Wills)
+
 0.002   2015-06-08
         Updating for release of version 0.002
         Added limiting dir name length (Ivan Wills)

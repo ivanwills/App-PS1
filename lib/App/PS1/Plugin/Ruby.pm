@@ -10,7 +10,7 @@ use strict;
 use warnings;
 use English qw/ -no_match_vars /;
 
-our $VERSION = 0.002;
+our $VERSION = 0.003;
 
 sub ruby {
     my ($self) = @_;
@@ -34,7 +34,7 @@ App::PS1::Plugin::Ruby - Shows current version of ruby if using rvm
 
 =head1 VERSION
 
-This documentation refers to App::PS1::Plugin::Ruby version 0.002.
+This documentation refers to App::PS1::Plugin::Ruby version 0.003.
 
 =head1 SYNOPSIS
 
