@@ -63,6 +63,62 @@ To install this module, run the following commands:
     ./Build test
     ./Build install
 
+=head1 CONFIGURATION AND ENVIRONMENT
+
+Lots of environment variables are used to configure the command prompt
+
+=over 4
+
+=item C<$APP_PS1>
+
+Sets the elements to be displayed (overridden by C<--ps1>)
+
+Default 'face;branch;date;directory;uptime',
+
+=item C<$APP_PS1_THEME>
+
+Sets the colour theme for the prompt
+
+=over 4
+
+=item *
+
+default
+
+=item *
+
+green
+
+=item *
+
+blue
+
+=back
+
+Default 'default',
+
+=item C<$PS1_COLS>
+
+If L<Term::Size::Any> is not installed you can configure the width of your
+screen by setting this parameter.
+
+Default 90,
+
+=item C<$UNICODE_UNSAFE>
+
+If set to a true value this will allow UTF8 characters to be used displaying
+the prompt
+
+Default not set
+
+=item C<$APP_PS1_BACKGROUND>
+
+Set the line's background colour
+
+Default 52
+
+=back
+
 =head1 SUPPORT AND DOCUMENTATION
 
 After installing, you can find documentation for this module with the
