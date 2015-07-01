@@ -12,7 +12,7 @@ use Carp;
 use Data::Dumper qw/Dumper/;
 use English qw/ -no_match_vars /;
 
-our $VERSION = 0.003;
+our $VERSION = 0.004;
 
 sub face {
     my ($self) = @_;
@@ -32,7 +32,7 @@ App::PS1::Plugin::Face - Adds an indicator of last programs success or failure t
 
 =head1 VERSION
 
-This documentation refers to App::PS1::Plugin::Face version 0.003.
+This documentation refers to App::PS1::Plugin::Face version 0.004.
 
 =head1 SYNOPSIS
 

@@ -1,5 +1,9 @@
 Revision history for App-PS1
 
+0.004   2015-07-01
+        Updating for release of version 0.004
+        Added env variable documentation into more places (Ivan Wills)
+
 0.003   2015-06-16
         Updating for release of version 0.003
         Added documentation about environment variables (Ivan Wills)

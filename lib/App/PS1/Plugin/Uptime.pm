@@ -14,7 +14,7 @@ use English qw/ -no_match_vars /;
 use Term::ANSIColor;
 use Path::Tiny;
 
-our $VERSION = 0.003;
+our $VERSION = 0.004;
 
 sub uptime {
     my ($self) = @_;
@@ -43,7 +43,7 @@ App::PS1::Plugin::Uptime - Adds system uptime to prompt
 
 =head1 VERSION
 
-This documentation refers to App::PS1::Plugin::Uptime version 0.003.
+This documentation refers to App::PS1::Plugin::Uptime version 0.004.
 
 =head1 SYNOPSIS
 
