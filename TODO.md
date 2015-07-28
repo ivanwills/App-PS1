@@ -14,7 +14,18 @@ This is a semi-colon seperated list of plugins that are to be used to make up
 the command prompt. The plugins accept JSON formatted arguments after the
 name and before the next colon eg:
 
-    APP_PS1='smile;dir{"current":true};uptime'
+    APP_PS1='smile;directory{"abreviate":true};uptime'
+
+### Path
+
+An option for directory parameter is to abreviate parent directories
+
+eg:
+
+    # convert
+    ~/My/Long/directory/path/to/here
+    # to
+    ~/M/L/d/p/t/here
 
 Screen
 ------
