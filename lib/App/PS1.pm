@@ -17,7 +17,7 @@ use base qw/Class::Accessor::Fast/;
 eval { require Term::Colour256 };
 my $t256 = !$EVAL_ERROR;
 
-our $VERSION = 0.004;
+our $VERSION = 0.005;
 
 __PACKAGE__->mk_accessors(qw/ ps1 cols plugins bw low exit parts safe theme/);
 
@@ -219,7 +219,7 @@ App::PS1 - Module to load PS1 status line elements
 
 =head1 VERSION
 
-This documentation refers to App::PS1 version 0.004.
+This documentation refers to App::PS1 version 0.005.
 
 =head1 SYNOPSIS
 
