@@ -78,7 +78,8 @@ sub new {
 
     $theme{ $self->theme } ||= {};
     for my $name ( keys %{ $theme{ $self->theme } } ) {
-        if ( my $env = $ENV{ 'APP_PS1_' . uc $name } ) {
+        my $env = $ENV{ 'APP_PS1_' . uc $name };
+        if ($env) {
             $theme{ $self->theme }{$name} = [ ( $env ) x 2 ];
         }
     }

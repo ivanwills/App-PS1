@@ -16,7 +16,7 @@ use Path::Tiny;
 our $VERSION = 0.004;
 
 sub directory {
-    my ($self) = @_;
+    my ($self, $options) = @_;
 
     my $dir  = path('.')->absolute;
     my $home = path($ENV{HOME});
@@ -27,6 +27,9 @@ sub directory {
     }
     if (length $dir_display > 20) {
         $dir_display = '...' . substr $dir_display, -20, 20;
+    }
+    if ($options->{abreviate}) {
+        $dir_display =~ s{/([^/])[^/]+/}{/$1/}g;
     }
 
     my $len = length $dir_display;
