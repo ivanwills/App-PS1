@@ -287,6 +287,10 @@ Surround the text with brackets
 
 Get the theme colour for C<$name>
 
+=head3 C<parse_options ($options)>
+
+Parses the JSON $options txt.
+
 =head1 DIAGNOSTICS
 
 =head1 CONFIGURATION AND ENVIRONMENT
