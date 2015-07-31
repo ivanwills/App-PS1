@@ -15,7 +15,7 @@ use English qw/ -no_match_vars /;
 our $VERSION = 0.005;
 
 sub face {
-    my ($self) = @_;
+    my ($self, $options) = @_;
     my $exit_code = $self->exit;
     my ($happy, $sad) = (qw/:-) :-(/);
 

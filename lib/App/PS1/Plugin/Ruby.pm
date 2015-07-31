@@ -13,7 +13,7 @@ use English qw/ -no_match_vars /;
 our $VERSION = 0.005;
 
 sub ruby {
-    my ($self) = @_;
+    my ($self, $options) = @_;
     my $name = $ENV{RUBY_VERSION};
     return if !$name;
 

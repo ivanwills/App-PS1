@@ -14,7 +14,7 @@ use Path::Tiny;
 our $VERSION = 0.005;
 
 sub branch {
-    my ($self) = @_;
+    my ($self, $options) = @_;
     my ($type, $branch);
     my $dir = eval { path('.')->realpath };
     my $git = git();

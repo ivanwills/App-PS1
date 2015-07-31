@@ -15,7 +15,7 @@ our @EXPORT_OK   = qw//;
 our %EXPORT_TAGS = ();
 
 sub node {
-    my ($self) = @_;
+    my ($self, $options) = @_;
     my $version;
     my $path;
 

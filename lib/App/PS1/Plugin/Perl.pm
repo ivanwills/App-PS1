@@ -17,7 +17,7 @@ our %EXPORT_TAGS = ();
 #our @EXPORT      = qw//;
 
 sub perl {
-    my ($self) = @_;
+    my ($self, $options) = @_;
     my $path = $ENV{PERLBREW_PERL};
     return if !$path;
 

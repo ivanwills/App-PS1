@@ -17,7 +17,7 @@ use Path::Tiny;
 our $VERSION = 0.005;
 
 sub uptime {
-    my ($self) = @_;
+    my ($self, $options) = @_;
     my ($uptime) = eval { split /\s+/, path('/proc/uptime')->slurp };
 
     return if !$uptime;
