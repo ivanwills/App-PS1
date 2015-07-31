@@ -1,5 +1,12 @@
 Revision history for App-PS1
 
+0.006   2015-07-31
+        Updating for release of version 0.006
+        Added missing documentation (Ivan Wills)
+        Updated dependencies (Ivan Wills)
+        Converted options to using JSON (as documented) (Ivan Wills)
+        Added getting options for future use (Ivan Wills)
+
 0.005   2015-07-30
         Updating for release of version 0.005
         Added abreviation option for directories (Ivan Wills)
