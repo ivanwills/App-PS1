@@ -67,12 +67,13 @@ sub main {
 
     my @chars = term_chars();
     my $ps1 = App::PS1->new({
-        ps1   => $option{ps1},
-        low   => $option{16},
-        bw    => $option{bw},
-        theme => $option{theme},
-        exit  => $option{exit},
-        cols  => $chars[0],
+        ps1     => $option{ps1},
+        low     => $option{16},
+        bw      => $option{bw},
+        theme   => $option{theme},
+        exit    => $option{exit},
+        cols    => $chars[0],
+        verbose => $option{verbose},
     });
 
     print $ps1->cmd_prompt;

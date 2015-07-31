@@ -19,7 +19,7 @@ my $t256 = !$EVAL_ERROR;
 
 our $VERSION = 0.005;
 
-__PACKAGE__->mk_accessors(qw/ ps1 cols plugins bw low exit parts safe theme/);
+__PACKAGE__->mk_accessors(qw/ ps1 cols plugins bw low exit parts safe theme verbose/);
 
 my %theme = (
     default => {
@@ -103,7 +103,7 @@ sub cmd_prompt {
         next if $plugin !~ /^[a-z]+$/;
         next if !$self->load($plugin);
 
-        $options = $options ? eval $options : {}; ## no critic
+        $options = $self->parse_options($options, $plugin);
         my ($text, $size) = eval { $self->$plugin($options) };
 
         if ($size) {
@@ -162,6 +162,23 @@ sub cmd_prompt {
     }
 
     return $out;
+}
+
+sub parse_options {
+    my ($self, $options_txt, $name) = @_;
+
+    return {} if !$options_txt;
+
+    require JSON::XS;
+
+    my $options = eval { JSON::XS::decode_json($options_txt) };
+    my $error   = $@;
+
+    if ($error && $self->verbose) {
+        cluck "Error reading $name\'s options ($options_txt)! $error\n";
+    }
+
+    return $options || {};
 }
 
 sub parts_size {
