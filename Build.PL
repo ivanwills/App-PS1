@@ -10,6 +10,7 @@ my $builder = Module::Build->new(
     requires          => {
         'perl'                  => 5.006,
         'Class::Accessor::Fast' => 0,
+        'JSON::XS'              => 0,
         'Path::Tiny'            => 0,
         'version'               => 0,
     },
