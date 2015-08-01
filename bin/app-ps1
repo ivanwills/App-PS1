@@ -125,12 +125,19 @@ This documentation refers to app-ps1 version 0.006.
                         branch - Show the Git, SVN or CVS branch of the current directory (if any)
                         date - the date and time of when the prompt is displayed
                         directory - Info about the current directory (name, subdirs, files disk usage)
+                            abreviate - Abreviate parent directories to one character if true
+                            dir - If set to false turns off directory count
+                            file - If set to false turns off file count
+                            size - If set to false turns off directory size
                         face - Happy face if last command exited with 0 sad otherwise
                         node - Current nodejs version if using nvm or nave
                         perl - Current perl version if using perlbrew
                         processes - Info about the current processes
                         ruby - Current ruby version if using rvm
                         uptime - Current system uptime
+                    Options:
+                        After each value you can specify a JSON object where you can configure further
+                        options eg directory{"abreviate":true};uptime
   -e --exit[=]str   Last program's exit code (needed for face)
   -q --quick-start  A quick start helper
      --256          Show colours for 256 colour terminal (Default)
