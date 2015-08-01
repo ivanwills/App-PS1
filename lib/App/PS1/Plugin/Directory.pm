@@ -60,9 +60,15 @@ sub directory {
     my $dir_length  = 6 + length $dir_count;
     my $file_length = 7 + length $file_count;
     my $size_length = 1 + length $size;
-    $dir_count  = $self->colour('dir_label') . " dir:"  . $self->colour('dir_size') . "$dir_count,";
-    $file_count = $self->colour('dir_label') . " file:" . $self->colour('dir_size') . "$file_count,";
-    $size       = $self->colour('dir_label') . " "      . $self->colour('dir_size') . $size;
+    if (!defined $options->{dir} || $options->{dir}) {
+        $dir_count  = $self->colour('dir_label') . " dir:"  . $self->colour('dir_size') . "$dir_count,";
+    }
+    if (!defined $options->{file} || $options->{file}) {
+        $file_count = $self->colour('dir_label') . " file:" . $self->colour('dir_size') . "$file_count,";
+    }
+    if (!defined $options->{size} || $options->{size}) {
+        $size       = $self->colour('dir_label') . " "      . $self->colour('dir_size') . $size;
+    }
 
     my $arb = @{$self->parts} + $self->parts_size;
     if ( $details[0] + $dir_length + $file_length + $size_length + $arb < $self->cols ) {
