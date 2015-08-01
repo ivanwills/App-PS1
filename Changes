@@ -1,5 +1,10 @@
 Revision history for App-PS1
 
+0.007   2015-08-01
+        Updating for release of version 0.007
+        Added documentation about new settings (Ivan Wills)
+        Added logic to turn on and off file, dir and size (Ivan Wills)
+
 0.006   2015-07-31
         Updating for release of version 0.006
         Added missing documentation (Ivan Wills)
