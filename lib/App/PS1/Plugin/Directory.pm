@@ -13,7 +13,7 @@ use Data::Dumper qw/Dumper/;
 use English qw/ -no_match_vars /;
 use Path::Tiny;
 
-our $VERSION = 0.007;
+our $VERSION = 0.008;
 
 sub directory {
     my ($self, $options) = @_;
@@ -102,7 +102,7 @@ App::PS1::Plugin::Directory - Current directory information
 
 =head1 VERSION
 
-This documentation refers to App::PS1::Plugin::Directory version 0.007.
+This documentation refers to App::PS1::Plugin::Directory version 0.008.
 
 =head1 SYNOPSIS
 
