@@ -57,17 +57,22 @@ sub directory {
         : $size >         10_000 ? sprintf "%dKiB"  , $size / 2**10
         : $size >            900 ? sprintf "%.1dKiB", $size / 2**10
         :                          $size;
-    my $dir_length  = 6 + length $dir_count;
-    my $file_length = 7 + length $file_count;
-    my $size_length = 1 + length $size;
+
+    my $dir_length  = 1;
+    my $file_length = 1;
+    my $size_length = 1;
+
     if (!defined $options->{dir} || $options->{dir}) {
+        $dir_length = 6 + length $dir_count;
         $dir_count  = $self->colour('dir_label') . " dir:"  . $self->colour('dir_size') . "$dir_count,";
     }
     if (!defined $options->{file} || $options->{file}) {
-        $file_count = $self->colour('dir_label') . " file:" . $self->colour('dir_size') . "$file_count,";
+        $file_length = 7 + length $file_count;
+        $file_count  = $self->colour('dir_label') . " file:" . $self->colour('dir_size') . "$file_count,";
     }
     if (!defined $options->{size} || $options->{size}) {
-        $size       = $self->colour('dir_label') . " "      . $self->colour('dir_size') . $size;
+        $size_length = 1 + length $size;
+        $size        = $self->colour('dir_label') . " "      . $self->colour('dir_size') . $size;
     }
 
     my $arb = @{$self->parts} + $self->parts_size;
