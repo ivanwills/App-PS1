@@ -58,9 +58,9 @@ sub directory {
         : $size >            900 ? sprintf "%.1dKiB", $size / 2**10
         :                          $size;
 
-    my $dir_length  = 1;
-    my $file_length = 1;
-    my $size_length = 1;
+    my $dir_length  = 0;
+    my $file_length = 0;
+    my $size_length = 0;
 
     if (!defined $options->{dir} || $options->{dir}) {
         $dir_length = 6 + length $dir_count;
@@ -77,7 +77,6 @@ sub directory {
         $file_count = '';
     }
     if (!defined $options->{size} || $options->{size}) {
-        warn 'here';
         $size_length = 1 + length $size;
         $size        = $self->colour('dir_label') . " "      . $self->colour('dir_size') . $size;
     }
