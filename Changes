@@ -1,5 +1,10 @@
 Revision history for App-PS1
 
+0.009   2015-08-03
+        Updating for release of version 0.009
+        Fixed sizes (Ivan Wills)
+        Fixing display (Ivan Wills)
+
 0.008   2015-08-02
         Updating for release of version 0.008
         Fixed display of elements (Ivan Wills)
