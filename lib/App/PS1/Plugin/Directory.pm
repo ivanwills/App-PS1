@@ -66,13 +66,23 @@ sub directory {
         $dir_length = 6 + length $dir_count;
         $dir_count  = $self->colour('dir_label') . " dir:"  . $self->colour('dir_size') . "$dir_count,";
     }
+    else {
+        $dir_count = '';
+    }
     if (!defined $options->{file} || $options->{file}) {
         $file_length = 7 + length $file_count;
         $file_count  = $self->colour('dir_label') . " file:" . $self->colour('dir_size') . "$file_count,";
     }
+    else {
+        $file_count = '';
+    }
     if (!defined $options->{size} || $options->{size}) {
+        warn 'here';
         $size_length = 1 + length $size;
         $size        = $self->colour('dir_label') . " "      . $self->colour('dir_size') . $size;
+    }
+    else {
+        $size = '';
     }
 
     my $arb = @{$self->parts} + $self->parts_size;
