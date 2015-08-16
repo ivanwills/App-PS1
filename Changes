@@ -1,5 +1,9 @@
 Revision history for App-PS1
 
+0.01   2015-08-16
+        Updating for release of version 0.01
+        Removed creation of makefile (Ivan Wills)
+
 0.009   2015-08-03
         Updating for release of version 0.009
         Fixed sizes (Ivan Wills)
