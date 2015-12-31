@@ -21,12 +21,13 @@ sub directory {
     my $dir  = path('.')->absolute;
     my $home = path($ENV{HOME});
     my $dir_display = "$dir";
+    $options->{dir_length} ||= 30;
 
     if ($home->subsumes($dir) ) {
         $dir_display =~ s/$home/~/xms;
     }
-    if (length $dir_display > 20) {
-        $dir_display = '...' . substr $dir_display, -20, 20;
+    if (length $dir_display > $options->{dir_length}) {
+        $dir_display = '...' . substr $dir_display, -$options->{dir_length}, $options->{dir_length};
     }
     if ($options->{abreviate}) {
         $dir_display =~ s{/([^/])[^/]+/}{/$1/}g;
