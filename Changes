@@ -1,5 +1,10 @@
 Revision history for App-PS1
 
+0.02   2016-01-01
+        Updating for release of version 0.02
+        Updating license (Ivan Wills)
+        Made directory length configurable (and set to 30) (Ivan Wills)
+
 0.01   2015-08-16
         Updating for release of version 0.01
         Removed creation of makefile (Ivan Wills)
