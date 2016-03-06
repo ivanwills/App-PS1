@@ -1,0 +1,36 @@
+---
+count: 4
+default:
+  restart: 0
+  wait: 1
+editor:
+  files:
+    base:
+      - lib/App/PS1.pm
+      - lib/App/PS1/Daemon.pm
+      - lib/App/PS1/Plugin/Face.pm
+      - lib/App/PS1/Plugin/Date.pm
+      - lib/App/PS1/Plugin/Uptime.pm
+    optional:
+      - lib/App/PS1/Plugin/Branch.pm
+      - lib/App/PS1/Plugin/Perl.pm
+      - lib/App/PS1/Plugin/Ruby.pm
+      - lib/App/PS1/Plugin/Node.pm
+      - lib/App/PS1/Plugin/Directory.pm
+      - lib/App/PS1/Plugin/Processes.pm
+name: ps1
+terminals:
+  1a:
+    wait: 0
+    # watch is a list of files (or file groups) to watch for changes and
+    # re-run the command. This watch waits for changes in files in the
+    # lib bin and tests directories and then runs tests
+    watch:
+      - lib
+      - bin
+      - all-tests
+    command: ./Build && ./Build testcover
+  2:
+    edit: base
+  3:
+    edit: optional
