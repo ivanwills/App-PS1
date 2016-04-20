@@ -45,6 +45,11 @@ This documentation refers to App::PS1::Plugin::Face version 0.02.
 
 =head1 DESCRIPTION
 
+Adds a smily face / sad face to indicate result of the previous command. That
+is if the exit code of the last command is zero a happy face is shown but if
+the exit code is non-zero a sad face is shown. Also if the exit code is less
+than 3 the the colour is orange if greater than 3 it's red.
+
 =head1 SUBROUTINES/METHODS
 
 =head3 C<face ()>
