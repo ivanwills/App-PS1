@@ -10,6 +10,7 @@ use strict;
 use warnings;
 use English qw/ -no_match_vars /;
 use Path::Tiny;
+use Term::ANSIColor qw/color/;
 
 our $VERSION = 0.02;
 
@@ -59,10 +60,44 @@ sub branch {
         $branch .= '...';
     }
 
+    my ($len, $status) = status($type);
     return $self->surround(
-        length $type . $branch,
+        $len + length $type . $branch,
         $self->colour('branch_label') . $type
         . $self->colour('branch') . $branch
+        . $status
+    );
+}
+
+sub status {
+    my ($type) = @_;
+    return (0, '') if $type ne 'git ';
+
+    my %status = (
+        staged => 0,
+        unstaged => 0,
+        untracked => 0,
+    );
+    my @status = `git status --porcelain`;
+    for my $status (@status) {
+        my ($staged, $unstaged) = $status =~ /^(.)(.)/;
+        $status{staged}++ if $staged ne '?' && $staged ne ' ';
+        $status{unstaged}++ if $unstaged ne '?' && $unstaged ne ' ';
+        $status{untracked}++ if $staged eq '?';
+    }
+
+    my @chars = (' ', '①','②','③','④','⑤','⑥','⑦','⑧','⑨','⑩','⑫','⑬','⑭','⑮','⑯','⑰','⑱','⑲','⑳','㉑','㉒','㉓','㉔','㉕','㉖','㉗','㉘','㉙','㉚','㉛','㉜','㉝','㉞','㉟');
+    my $str = ' ';
+    $str .= color('green') . $chars[$status{staged}] . ' ';
+    $str .= color('red'  ) . $chars[$status{unstaged}] . ' ';
+    $str .= color('white') . $chars[$status{untracked}];
+
+    return (
+        6 +
+        ($status{staged} > 20) +
+        ($status{unstaged} > 20) +
+        ($status{untracked} > 20),
+        $str
     );
 }
 
