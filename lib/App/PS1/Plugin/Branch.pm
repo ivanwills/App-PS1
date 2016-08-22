@@ -87,16 +87,15 @@ sub status {
     }
 
     my @chars = (' ', '①','②','③','④','⑤','⑥','⑦','⑧','⑨','⑩','⑪','⑫','⑬','⑭','⑮','⑯','⑰','⑱','⑲','⑳','㉑','㉒','㉓','㉔','㉕','㉖','㉗','㉘','㉙','㉚','㉛','㉜','㉝','㉞','㉟');
-    my $str = ' ';
-    $str .= color('green') . $chars[$status{staged}  ] . ' ';
-    $str .= color('red'  ) . $chars[$status{unstaged}] . ' ';
-    $str .= color('white') . $chars[$status{untracked}];
+    my $str = '';
+    $str .= ' ' . color('green') . $chars[$status{staged}  ]  if $status{staged};
+    $str .= ' ' . color('red'  ) . $chars[$status{unstaged}]  if $status{unstaged};
+    $str .= ' ' . color('white') . $chars[$status{untracked}] if $status{untracked};
 
     return (
-        6 +
-        ($status{staged} > 20) +
-        ($status{unstaged} > 20) +
-        ($status{untracked} > 20),
+        (! $status{staged}    ? 0 : $status{staged}    > 20 ? 3 : 2) +
+        (! $status{unstaged}  ? 0 : $status{unstaged}  > 20 ? 3 : 2) +
+        (! $status{untracked} ? 0 : $status{untracked} > 20 ? 3 : 2),
         $str
     );
 }
