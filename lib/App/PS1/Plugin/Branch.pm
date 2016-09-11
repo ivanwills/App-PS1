@@ -86,11 +86,11 @@ sub status {
         $status{untracked}++ if $staged eq '?' && $unstaged eq '?';
     }
 
-    my @chars = (' ', '①','②','③','④','⑤','⑥','⑦','⑧','⑨','⑩','⑪','⑫','⑬','⑭','⑮','⑯','⑰','⑱','⑲','⑳','㉑','㉒','㉓','㉔','㉕','㉖','㉗','㉘','㉙','㉚','㉛','㉜','㉝','㉞','㉟');
+    my @chars = (' ', '①','②','③','④','⑤','⑥','⑦','⑧','⑨','⑩','⑪','⑫','⑬','⑭','⑮','⑯','⑰','⑱','⑲','⑳','㉑','㉒','㉓','㉔','㉕','㉖','㉗','㉘','㉙','㉚','㉛','㉜','㉝','㉞','㉟', '∞');
     my $str = '';
-    $str .= ' ' . color('green') . $chars[$status{staged}  ]  if $status{staged};
-    $str .= ' ' . color('red'  ) . $chars[$status{unstaged}]  if $status{unstaged};
-    $str .= ' ' . color('white') . $chars[$status{untracked}] if $status{untracked};
+    $str .= ' ' . color('green') . ($chars[$status{staged}   ] || $chars[36]) if $status{staged};
+    $str .= ' ' . color('red'  ) . ($chars[$status{unstaged} ] || $chars[36]) if $status{unstaged};
+    $str .= ' ' . color('white') . ($chars[$status{untracked}] || $chars[36]) if $status{untracked};
 
     return (
         (! $status{staged}    ? 0 : $status{staged}    > 20 ? 3 : 2) +
@@ -150,6 +150,10 @@ Returns the full path for the git executable
 =head3 C<cvs ()>
 
 Returns the full path for the cvs executable
+
+=head3 C<status ()>
+
+Adds a status of the number of changes present for git repositories.
 
 =head1 DIAGNOSTICS
 
