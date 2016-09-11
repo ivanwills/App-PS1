@@ -1,5 +1,15 @@
 Revision history for App-PS1
 
+0.03   2016-09-11
+        Updating for release of version 0.03
+        Fixed spelling (Ivan Wills)
+        Added documentation about status (Ivan Wills)
+        Changed status to be shorter if nothing to report (Ivan Wills)
+        Fixed missing 11 (Ivan Wills)
+        Adding git status details to prompt (Ivan Wills)
+        Added some description to A::P::P::Face (Ivan Wills)
+        Added vtide files (Ivan Wills)
+
 0.02   2016-01-01
         Updating for release of version 0.02
         Updating license (Ivan Wills)
