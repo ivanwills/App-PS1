@@ -36,7 +36,7 @@ __END__
 
 =head1 NAME
 
-App::PS1::Plugin::Env - Adds an indicator of last programs success or failure to prompt
+App::PS1::Plugin::Env - Shows the value/state of requested environment variables for displaying on the prompt
 
 =head1 VERSION
 
@@ -53,16 +53,13 @@ This documentation refers to App::PS1::Plugin::Env version 0.02.
 
 =head1 DESCRIPTION
 
-Adds a smily face / sad face to indicate result of the previous command. That
-is if the exit code of the last command is zero a happy face is shown but if
-the exit code is non-zero a sad face is shown. Also if the exit code is less
-than 3 the the colour is orange if greater than 3 it's red.
+Allows the addition of environment variables on the prompt
 
 =head1 SUBROUTINES/METHODS
 
-=head3 C<face ()>
+=head3 C<env ()>
 
-Happy face if last process returned without error sad otherwise.
+Returns requested environment variables for the prompt
 
 =head1 DIAGNOSTICS
 
