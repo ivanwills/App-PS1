@@ -1,5 +1,15 @@
 Revision history for App-PS1
 
+0.04   2017-03-15
+        Updating for release of version 0.04
+        Fixed POD and spelling (Ivan Wills)
+        Added missing tests (Ivan Wills)
+        Updated licence (Ivan Wills)
+        Code tidy (Ivan Wills)
+        Adding eval to protect against errors (Ivan Wills)
+        Adding generic environment reporter (Ivan Wills)
+        Added perl 5.24 to travis build (Ivan Wills)
+
 0.03   2016-09-11
         Updating for release of version 0.03
         Fixed spelling (Ivan Wills)
