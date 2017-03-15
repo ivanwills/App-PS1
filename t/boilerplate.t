@@ -52,6 +52,7 @@ module_boilerplate_ok('lib/App/PS1/Daemon.pm');
 module_boilerplate_ok('lib/App/PS1/Plugin/Branch.pm');
 module_boilerplate_ok('lib/App/PS1/Plugin/Date.pm');
 module_boilerplate_ok('lib/App/PS1/Plugin/Directory.pm');
+module_boilerplate_ok('lib/App/PS1/Plugin/Env.pm');
 module_boilerplate_ok('lib/App/PS1/Plugin/Face.pm');
 module_boilerplate_ok('lib/App/PS1/Plugin/Node.pm');
 module_boilerplate_ok('lib/App/PS1/Plugin/Perl.pm');

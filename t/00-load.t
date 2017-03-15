@@ -11,6 +11,7 @@ BEGIN {
     use_ok('App::PS1::Plugin::Branch');
     use_ok('App::PS1::Plugin::Date');
     use_ok('App::PS1::Plugin::Directory');
+    use_ok('App::PS1::Plugin::Env');
     use_ok('App::PS1::Plugin::Face');
     use_ok('App::PS1::Plugin::Node');
     use_ok('App::PS1::Plugin::Perl');
