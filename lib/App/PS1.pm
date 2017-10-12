@@ -207,7 +207,7 @@ sub load {
 sub surround {
     my ($self, $count, $text) = @_;
 
-    return if !defined $text;
+    return if !defined $text || !$count;
 
     my $left  = $self->safe ? '≺' : '<';
     my $right = $self->safe ? '≻' : '>';
