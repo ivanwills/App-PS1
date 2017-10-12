@@ -1,5 +1,5 @@
 ---
-count: 4
+count: 6
 default:
   restart: 0
   wait: 1
@@ -16,8 +16,10 @@ editor:
       - lib/App/PS1/Plugin/Perl.pm
       - lib/App/PS1/Plugin/Ruby.pm
       - lib/App/PS1/Plugin/Node.pm
+    other:
       - lib/App/PS1/Plugin/Directory.pm
       - lib/App/PS1/Plugin/Processes.pm
+      - lib/App/PS1/Plugin/Env.pm
 name: ps1
 terminals:
   1a:
@@ -34,3 +36,5 @@ terminals:
     edit: base
   3:
     edit: optional
+  4:
+    edit: other
