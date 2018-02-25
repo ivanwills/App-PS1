@@ -56,8 +56,13 @@ sub branch {
         $max_branch_width = 60;
     }
     if ( length $branch > $max_branch_width ) {
-        $branch = substr $branch, 0, $max_branch_width;
-        $branch .= '...';
+        if ( $options->{summarize} ) {
+            $branch =~ s{^(\w)(?:[^/]+)/}{$1/};
+        }
+        if ( length $branch > $max_branch_width ) {
+            $branch = substr $branch, 0, $max_branch_width;
+            $branch .= '...';
+        }
     }
 
     my ($len, $status) = status($type);
