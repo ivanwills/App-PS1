@@ -33,7 +33,7 @@ my %theme = (
         date         => [ 'red'   , 'red'    ],
         face_happy   => [ 'green' , 46       ],
         face_sad     => [ 'red'   , 202      ],
-        dir_name     => [ 'blue'  , 'blue'   ],
+        dir_name     => [ 'white' , 'white'  ],
         dir_label    => [ 'black' , 'black'  ],
         dir_size     => [ 'cyan'  , 'cyan'   ],
     },
