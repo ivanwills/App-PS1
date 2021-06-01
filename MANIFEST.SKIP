@@ -92,13 +92,18 @@ debian/
 
 # Other files of interest
 \..*\.tag$
+errors.err
+.travis.yml
 .editorconfig
 .vtide.yml
-.travis.yml
+.vtide/*
+^MYMETA\.json$
+MANIFEST.SKIP
 .current-env
 vrc.yml
+tags
+^.*\.lock
 vim.sh
 tmp*
 temp*
-errors.err
 TODO
