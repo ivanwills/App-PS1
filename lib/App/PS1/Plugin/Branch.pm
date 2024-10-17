@@ -15,30 +15,31 @@ use Term::ANSIColor qw/color/;
 our $VERSION = 0.08;
 
 sub branch {
-    my ($self, $options) = @_;
-    my ($type, $branch);
+    my ( $self, $options ) = @_;
+    my ( $type, $branch );
     my $dir = eval { path('.')->realpath };
     my $git = git();
     my $cvs = cvs();
     while ( $dir ne $dir->parent ) {
-        if ( -f $dir->child('.git', 'HEAD') ) {
-            $type = 'git';
+        if ( -f $dir->child( '.git', 'HEAD' ) ) {
+            $type   = 'git';
             $branch = $dir->child('.git')->child('HEAD')->slurp;
             chomp $branch;
             $branch =~ s/^ref: \s+ refs\/heads\/(.*)/$1/xms;
             if ( length $branch == 40 && $branch =~ /^[\da-f]+$/ ) {
-                my ($ans) = map {/^[*] [(]detached from (.*)[)]$/; $1} grep {/^[*]\s/} `$git branch --contains $branch`;
+                my ($ans) = map { /^[*] [(]detached from (.*)[)]$/; $1 }
+                  grep { /^[*]\s/ } `$git branch --contains $branch`;
                 $branch = "[$ans]" if $ans;
             }
         }
-        elsif (-f $dir->child('CVS', 'Tag')) {
-            $type = 'cvs';
-            $branch = $dir->child('CVS', 'Tag')->slurp;
+        elsif ( -f $dir->child( 'CVS', 'Tag' ) ) {
+            $type   = 'cvs';
+            $branch = $dir->child( 'CVS', 'Tag' )->slurp;
             chomp $branch;
             $branch =~ s/^N//;
             $branch = "($branch)";
         }
-        elsif (-f $dir->child('CVS', 'Root')) {
+        elsif ( -f $dir->child( 'CVS', 'Root' ) ) {
             $type   = 'cvs';
             $branch = 'master';
         }
@@ -52,7 +53,7 @@ sub branch {
     $type = $self->cols && $self->cols > 40 ? "$type " : '';
 
     my $max_branch_width = ( $self->cols || 80 ) / 3;
-    if ($max_branch_width > 60) {
+    if ( $max_branch_width > 60 ) {
         $max_branch_width = 60;
     }
     if ( length $branch > $max_branch_width ) {
@@ -65,18 +66,20 @@ sub branch {
         }
     }
 
-    my ($len, $status) = status($type);
+    my ( $len, $status ) = status($type);
     return $self->surround(
         $len + length $type . $branch,
-        $self->colour('branch_label') . $type
-        . $self->colour('branch') . $branch
-        . $status
+        $self->colour('branch_label')
+          . $type
+          . $self->colour('branch')
+          . $branch
+          . $status
     );
 }
 
 sub status {
     my ($type) = @_;
-    return (0, '') if $type ne 'git ';
+    return ( 0, '' ) if $type ne 'git ';
 
     my %status = (
         staged    => 0,
@@ -85,35 +88,45 @@ sub status {
     );
     my @status = `git status --porcelain`;
     for my $status (@status) {
-        my ($staged, $unstaged) = $status =~ /^(.)(.)/;
-        $status{staged}++ if $staged ne '?' && $staged ne ' ';
-        $status{unstaged}++ if $unstaged ne '?' && $unstaged ne ' ';
-        $status{untracked}++ if $staged eq '?' && $unstaged eq '?';
+        my ( $staged, $unstaged ) = $status =~ /^(.)(.)/;
+        $status{staged}++    if $staged ne '?'   && $staged ne ' ';
+        $status{unstaged}++  if $unstaged ne '?' && $unstaged ne ' ';
+        $status{untracked}++ if $staged eq '?'   && $unstaged eq '?';
     }
 
-    my @chars = (' ', '①','②','③','④','⑤','⑥','⑦','⑧','⑨','⑩','⑪','⑫','⑬','⑭','⑮','⑯','⑰','⑱','⑲','⑳','㉑','㉒','㉓','㉔','㉕','㉖','㉗','㉘','㉙','㉚','㉛','㉜','㉝','㉞','㉟', '∞');
+    my @chars = (
+        ' ', '①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⑩', '⑪', '⑫', '⑬',
+        '⑭', '⑮', '⑯', '⑰', '⑱', '⑲', '⑳', '㉑', '㉒', '㉓', '㉔', '㉕', '㉖', '㉗',
+        '㉘', '㉙', '㉚', '㉛', '㉜', '㉝', '㉞', '㉟', '∞'
+    );
     my $str = '';
-    $str .= ' ' . color('green') . ($chars[$status{staged}   ] || $chars[36]) if $status{staged};
-    $str .= ' ' . color('red'  ) . ($chars[$status{unstaged} ] || $chars[36]) if $status{unstaged};
-    $str .= ' ' . color('white') . ($chars[$status{untracked}] || $chars[36]) if $status{untracked};
+    $str .= ' ' . color('green') . ( $chars[ $status{staged} ] || $chars[36] )
+      if $status{staged};
+    $str .= ' ' . color('red') . ( $chars[ $status{unstaged} ] || $chars[36] )
+      if $status{unstaged};
+    $str .=
+      ' ' . color('white') . ( $chars[ $status{untracked} ] || $chars[36] )
+      if $status{untracked};
+    $str &&= "$str ";
 
     return (
-        (! $status{staged}    ? 0 : $status{staged}    > 20 ? 3 : 2) +
-        (! $status{unstaged}  ? 0 : $status{unstaged}  > 20 ? 3 : 2) +
-        (! $status{untracked} ? 0 : $status{untracked} > 20 ? 3 : 2),
+        ( !$status{staged}      ? 0 : $status{staged} > 20    ? 3 : 2 ) +
+          ( !$status{unstaged}  ? 0 : $status{unstaged} > 20  ? 3 : 2 ) +
+          ( !$status{untracked} ? 0 : $status{untracked} > 20 ? 3 : 2 ) +
+          ( $str                ? 1 : 0 ),
         $str
     );
 }
 
 sub git {
-    for (split /:/, $ENV{PATH}) {
+    for ( split /:/, $ENV{PATH} ) {
         return "$_/git" if -x "$_/git";
     }
     return 'git';
 }
 
 sub cvs {
-    for (split /:/, $ENV{PATH}) {
+    for ( split /:/, $ENV{PATH} ) {
         return "$_/cvs" if -x "$_/cvs";
     }
     return 'cvs';
