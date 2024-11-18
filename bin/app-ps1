@@ -140,6 +140,8 @@ This documentation refers to app-ps1 version 0.08.
                     Options:
                         After each value you can specify a JSON object where you can configure further
                         options eg directory{"abreviate":true};uptime
+  -t --theme=[default|green|blue|white]
+                    Pick a colour theme for the prompt
   -e --exit[=]str   Last program's exit code (needed for face)
   -q --quick-start  A quick start helper
      --256          Show colours for 256 colour terminal (Default)

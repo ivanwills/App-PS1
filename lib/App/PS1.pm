@@ -67,6 +67,21 @@ my %theme = (
         dir_label    => [ 'black'   , 'black'  ],
         dir_size     => [ 'green'   , 46       ],
     },
+    white => {
+        # name          Low Colour       Hi Colour
+        background   => [ 'on_white'   , 'on_251' ],
+        marker       => [ 'black'      , 236      ],
+        up_time      => [ 'yellow'     , 'yellow' ],
+        up_label     => [ 'black'      , 'black'  ],
+        branch       => [ 'blue'       , 'blue'   ],
+        branch_label => [ 'black'      , 'black'  ],
+        date         => [ 'red'        , 124      ],
+        face_happy   => [ 'green'      , 28       ],
+        face_sad     => [ 'bright_red' , 88       ],
+        dir_name     => [ 'blue'       , 21       ],
+        dir_label    => [ 'black'      , 'black'  ],
+        dir_size     => [ 'green'      , 46       ],
+    },
 );
 
 sub new {
@@ -98,6 +113,9 @@ sub cmd_prompt {
     my $out = '';
     $self->parts([]);
 
+    if ($self->verbose) {
+        warn $self->bw ? 'bw': $t256 && !$self->low ? '256' : '16', "\n";
+    }
     for my $param ( split /;/, $self->ps1 ) {
         my ( $plugin, $options ) = split /(?=[{])/, $param;
         next if $plugin !~ /^[a-z]+$/;
